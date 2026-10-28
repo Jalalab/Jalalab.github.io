@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ChainGuardFL — Case Study | Jalal Abedin</title>
+<meta name="description" content="Blockchain-audited federated learning that filters AI-generated fakes and duplicate images before training. Case study by Jalal Abedin."/>
+<meta property="og:title" content="ChainGuardFL — Case Study"/>
+<meta property="og:description" content="Blockchain-audited federated learning with AI-fake filtering and pixel-level duplicate rejection."/>
+<meta property="og:type" content="article"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../assets/css/case-study.css"/>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav class="cs-nav">
+  <a class="logo" href="../../">Jalal<span>.</span></a>
+  <a href="../../#projects">← Back to portfolio</a>
+</nav>
+
+<header class="cs-hero">
+  <div class="wrap">
+    <div class="badges">
+      <span class="badge gold">Under review · IEEE Access</span>
+      <span class="badge">Federated Learning</span>
+      <span class="badge">Computer Vision</span>
+      <span class="badge">Blockchain Audit</span>
+    </div>
+    <h1>ChainGuardFL: <em>can you trust the data</em> inside a federated model?</h1>
+    <p class="lead">A federated learning framework that screens every client's images for AI-generated fakes and duplicates once, before training starts, and logs every decision to a tamper-evident ledger.</p>
+    <dl class="meta">
+      <div><dt>Type</dt><dd>Research / Senior project (CSE498R)</dd></div>
+      <div><dt>Team</dt><dd>4 students, North South University</dd></div>
+      <div><dt>My role</dt><dd>[YOUR ROLE, e.g. filter pipeline + experiments]</dd></div>
+      <div><dt>Supervisor</dt><dd>Md Raqibur Rahman</dd></div>
+      <div><dt>Stack</dt><dd>Python, PyTorch, Flask</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main>
+
+<section class="cs">
+  <div class="wrap reveal">
+    <p class="eyebrow">The problem</p>
+    <h2 class="title">Federated learning trusts every client blindly.</h2>
+    <div class="prose">
+      <p>In federated learning, clients train locally and only share model updates. That protects privacy, but the server never sees what each client actually trained on. Standard FedAvg assumes every image is genuine.</p>
+      <p>Image generators make that assumption weak. We looked at two specific threats in an art style classification setting:</p>
+      <p><strong>Fake contamination.</strong> A client's dataset contains AI-generated artwork, by accident or on purpose.<br/>
+         <strong>Cross-client duplication.</strong> The same painting, re-saved at a different size or format, enters through several clients and quietly gets extra weight.</p>
+      <p>On top of both, nobody except the server operator can verify afterwards what was checked or rejected.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cs">
+  <div class="wrap reveal">
+    <p class="eyebrow">The approach</p>
+    <h2 class="title">Check once, before round 1.</h2>
+    <p class="lead">ChainGuardFL is not a new aggregation rule. It is a fixed preprocessing stage in front of ordinary FedAvg, so its cost is paid once instead of every round.</p>
+    <div class="steps">
+      <div class="step"><h4>DaViT fake filter</h4><p>A DaViT-Base real/fake discriminator scores every training image. Anything above τ = 0.5 is dropped.</p></div>
+      <div class="step"><h4>Pixel-hash registry</h4><p>Images are converted to RGB, resized to 256×256 (Lanczos) and hashed with SHA-256. A matching hash from another client is rejected, whatever the file format.</p></div>
+      <div class="step"><h4>Federated training</h4><p>10 non-IID clients (Dirichlet α = 0.5) train on their fixed, verified shards for 50 rounds with FedAvg.</p></div>
+      <div class="step"><h4>SHA-256 audit ledger</h4><p>Every filter verdict, registry decision, weight-update hash and global model hash is chained into a ledger that anyone can re-verify.</p></div>
+    </div>
+    <figure>
+      <img src="../../assets/img/chainguardfl/architecture.png" alt="ChainGuardFL system architecture" loading="lazy"/>
+      <figcaption>System architecture (Figure 3.1 in the report).</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="cs">
+  <div class="wrap reveal">
+    <p class="eyebrow">Results</p>
+    <h2 class="title">What contamination cost, and what the filter won back.</h2>
+    <p class="lead">Eight backbones, three data regimes (clean, fake-mixed, filtered), 24 full federated runs.</p>
+
+    <div class="stats">
+      <div class="stat"><b data-count="6.77" data-decimals="2" data-prefix="−">0</b><span>average accuracy points lost to fake and duplicate contamination</span></div>
+      <div class="stat"><b data-count="2.15" data-decimals="2" data-prefix="+">0</b><span>points recovered by filtering, positive for all 8 backbones</span></div>
+      <div class="stat"><b data-count="31.7" data-decimals="1" data-suffix="%">0</b><span>faster training rounds than the unfiltered fake-mixed run</span></div>
+    </div>
+
+    <div class="chart reveal">
+      <h4>Average test accuracy across 8 backbones (%)</h4>
+      <div class="bar"><span>Clean</span><div class="track"><div class="fill good" style="--w:77.3%"></div></div><span class="val">61.86</span></div>
+      <div class="bar"><span>Fake-mixed</span><div class="track"><div class="fill bad" style="--w:68.9%"></div></div><span class="val">55.09</span></div>
+      <div class="bar"><span>Filtered</span><div class="track"><div class="fill" style="--w:71.6%"></div></div><span class="val">57.25</span></div>
+      <div class="bar"><span>Centralized*</span><div class="track"><div class="fill ref" style="--w:83.7%"></div></div><span class="val">66.98</span></div>
+      <p class="note">Bars are scaled 0–80%. *Centralized numbers come from an independent prior benchmark on the same dataset and the same eight backbones, used as an upper-bound reference.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Backbone</th><th>Clean</th><th>Fake-mixed</th><th>Filtered</th><th>Recovered</th></tr></thead>
+        <tbody>
+          <tr><td>Inception-ResNet-V2</td><td>54.40</td><td>47.16</td><td>50.88</td><td class="pos">+3.72</td></tr>
+          <tr><td>ResNet-101</td><td>56.36</td><td>53.23</td><td>54.03</td><td class="pos">+0.80</td></tr>
+          <tr><td>ViT-B/16</td><td>62.82</td><td>55.77</td><td>56.56</td><td class="pos">+0.79</td></tr>
+          <tr><td>MaxViT-tiny</td><td>59.69</td><td>55.19</td><td>56.56</td><td class="pos">+1.37</td></tr>
+          <tr><td>MViTv2-tiny</td><td>65.17</td><td>59.30</td><td>61.64</td><td class="pos">+2.34</td></tr>
+          <tr><td>FocalNet-tiny</td><td>65.95</td><td>55.58</td><td>58.32</td><td class="pos">+2.74</td></tr>
+          <tr><td>DaViT-base</td><td>66.54</td><td>56.67</td><td>58.71</td><td class="pos">+2.04</td></tr>
+          <tr><td>RepViT-m3</td><td>63.99</td><td>57.84</td><td>61.27</td><td class="pos">+3.43</td></tr>
+          <tr><td>Average</td><td>61.86</td><td>55.09</td><td>57.25</td><td class="pos">+2.15</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure>
+      <img src="../../assets/img/chainguardfl/accuracy-chart.png" alt="Test accuracy by backbone across regimes" loading="lazy"/>
+      <figcaption>Test accuracy by backbone across all four conditions (Figure 4.1).</figcaption>
+    </figure>
+
+    <div class="prose">
+      <p><strong>The ranking held for every backbone:</strong> Fake-mixed &lt; Filtered &lt; Clean &lt; Centralized, with no exceptions.</p>
+      <p><strong>Centralized accuracy did not predict federated robustness.</strong> MViTv2-tiny was the best federated model (61.64% filtered). RepViT-m3 ranked only fourth centrally but finished second under filtered federated training.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cs">
+  <div class="wrap reveal">
+    <p class="eyebrow">The filter</p>
+    <h2 class="title">Useful, but not perfect, and the report says so.</h2>
+    <div class="stats">
+      <div class="stat"><b data-count="81.6" data-decimals="1" data-suffix="%">0</b><span>recall: 1,965 of 2,407 fake training images caught</span></div>
+      <div class="stat"><b data-count="70.0" data-decimals="1" data-suffix="%">0</b><span>precision: 843 genuine images were wrongly removed</span></div>
+      <div class="stat"><b data-count="37.1" data-decimals="1" data-suffix="%">0</b><span>of the 7,575 training images were removed overall</span></div>
+    </div>
+    <div class="callout">
+      <strong>Honest reading.</strong> The filter recovers about a third of the damage (2.15 of 6.77 points). The remaining gap to centralized training averages 9.73 points: roughly 5.11 from federated non-IID training itself, and 4.62 from contamination the filter misses. The 31.7% round-time saving exists because 37.1% of images are removed, so part of it is simply less data.
+    </div>
+    <figure>
+      <img src="../../assets/img/chainguardfl/gradcam.png" alt="Grad-CAM saliency on a real and a fake artwork" loading="lazy"/>
+      <figcaption>Grad-CAM on a matched real/fake pair: the filter looks at brushstroke texture for genuine art and synthesis artefacts for generated art (Figure 3.2).</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="cs">
+  <div class="wrap reveal">
+    <p class="eyebrow">Limitations</p>
+    <h2 class="title">Where it breaks.</h2>
+    <div class="prose">
+      <p><strong>One-shot filtering.</strong> The filter runs once, so any weakness against a new image generator affects the whole run.</p>
+      <p><strong>Simulated ledger.</strong> The blockchain is a SHA-256 hash chain inside one process. It gives tamper evidence, not multi-node consensus.</p>
+      <p><strong>Pixel-level duplicates only.</strong> Two different photos of the same painting are not caught.</p>
+      <p><strong>Content, not updates.</strong> A client with clean data but a poisoned weight update would pass every check here.</p>
+      <p><strong>One heterogeneity setting.</strong> Everything uses α = 0.5, so we can't say how the benefit changes under more extreme skew.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cs">
+  <div class="wrap reveal">
+    <p class="eyebrow">My contribution</p>
+    <h2 class="title">What I worked on.</h2>
+    <div class="prose">
+      <p>[2–4 sentences, first person. Example: "I built the pixel-hash registry and the audit ledger, ran the Inception-ResNet-V2 and ViT experiments, and wrote the evaluation chapter."]</p>
+    </div>
+    <div class="tags">
+      <span class="tag">PyTorch</span><span class="tag">DaViT</span><span class="tag">FedAvg</span><span class="tag">SHA-256</span><span class="tag">Grad-CAM</span><span class="tag">Flask dashboard</span><span class="tag">Kaggle (2× T4)</span>
+    </div>
+    <p style="margin-top:34px">
+      <a class="btn" href="https://github.com/Jalalab/[REPO-NAME]" target="_blank" rel="noopener">View code ↗</a>
+      <a class="btn ghost" href="../../assets/ChainGuardFL-report.pdf" target="_blank" rel="noopener">Read the report (PDF)</a>
+    </p>
+  </div>
+</section>
+
+<div class="wrap">
+  <nav class="pager">
+    <a href="../../">← <small>Back</small>Portfolio</a>
+    <a href="../posattack/"><small>Next case study</small>POSAttack →</a>
+  </nav>
+</div>
+</main>
+
+<footer class="cs-foot">© 2026 Jalal Abedin</footer>
+<script src="../../assets/js/case-study.js"></script>
+</body>
+</html>
