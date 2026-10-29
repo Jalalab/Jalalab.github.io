@@ -2,467 +2,634 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Jalal Abedin | ML/AI Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Jalal Abedin, Machine Learning Engineer</title>
+<meta name="description" content="Machine learning engineer and researcher in Dhaka. Adversarial ML, federated learning, computer vision. IEEE published."/>
+<meta property="og:title" content="Jalal Abedin, Machine Learning Engineer"/>
+<meta property="og:description" content="Research on attacking and defending image models. IEEE published."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --bg: #060910;
-  --bg2: #0b1120;
-  --bg3: #0f1929;
-  --accent: #4f8eff;
-  --accent2: #7eb8ff;
-  --gold: #f0c060;
-  --text: #e8edf5;
-  --text-mid: #9aaac0;
-  --text-muted: #4a5a72;
-  --border: rgba(79,142,255,0.18);
-  --border2: rgba(79,142,255,0.08);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'Syne',sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden;cursor:none;}
+:root{--bg:#eef1f7;--panel:#fff;--ink:#0f1326;--mid:#4b5270;--soft:#8087a3;--line:#d9deeb;--blue:#3326ff;--blue-soft:#e6e4ff;--hot:#e0245e;--good:#0a8f63}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1124;--panel:#161a33;--ink:#eef0fb;--mid:#a9aecb;--soft:#6f759a;--line:#262b50;--blue:#8a82ff;--blue-soft:#222654;--hot:#ff5c8a;--good:#43d6a0}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.05;letter-spacing:-.03em}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--blue);z-index:99}
 
-/* CURSOR */
-#cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s;mix-blend-mode:screen;}
-#cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(79,142,255,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s;}
-#progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:200;width:0%;box-shadow:0 0 10px var(--accent);}
-#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.45;}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 6%;height:68px;background:rgba(6,9,16,0.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2);}
-.nav-logo{font-family:'Playfair Display',serif;font-size:24px;color:var(--text);text-decoration:none;letter-spacing:-0.5px;}
-.nav-logo span{color:var(--accent);}
-.nav-links{display:flex;gap:36px;list-style:none;}
-.nav-links a{text-decoration:none;font-size:12px;font-weight:500;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;transition:color .2s;position:relative;}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform .3s;}
-.nav-links a:hover{color:var(--text);}
-.nav-links a:hover::after{transform:scaleX(1);}
-.nav-cta{background:transparent;color:var(--accent);padding:8px 20px;border-radius:4px;font-size:12px;font-weight:500;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--accent);transition:all .3s;}
-.nav-cta:hover{background:var(--accent);color:var(--bg);}
-@media(max-width:700px){.nav-links{display:none;}}
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:62px}
+.logo{font-family:'Bricolage Grotesque';font-weight:800;font-size:20px;text-decoration:none;letter-spacing:-.04em}
+nav{display:flex;gap:26px;align-items:center}
+nav a{font-size:14px;color:var(--mid);text-decoration:none}nav a:hover{color:var(--ink)}
+nav a.cv{background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:8px;font-weight:600}
+@media(max-width:760px){nav a:not(.cv){display:none}}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding:110px 6% 80px;position:relative;z-index:2;}
-.hero-inner{display:grid;grid-template-columns:1fr 360px;gap:80px;align-items:center;max-width:1200px;margin:0 auto;width:100%;}
-@media(max-width:900px){.hero-inner{grid-template-columns:1fr;}.hero-photo-wrap{display:none;}}
+.hero{padding:84px 0 70px}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.status{display:inline-flex;gap:10px;align-items:center;font-size:14px;color:var(--mid);margin-bottom:22px}
+.status i{width:9px;height:9px;border-radius:50%;background:var(--good);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 55%,transparent)}100%{box-shadow:0 0 0 12px transparent}}
+h1{font-size:clamp(52px,9vw,112px);font-weight:800;margin-bottom:22px}
+.intro{font-size:20px;color:var(--mid);max-width:560px;margin-bottom:30px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-weight:600;font-size:15px;padding:13px 24px;border-radius:10px;text-decoration:none;border:2px solid var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--blue)}
+.btn.f{background:var(--ink);color:var(--bg)}
+.photo{aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:var(--blue-soft);border:2px solid var(--ink);box-shadow:10px 10px 0 var(--blue)}
+.photo img{width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.photo{max-width:240px}}
 
-.hero-tag{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);padding:7px 16px;border-radius:3px;margin-bottom:28px;border:1px solid var(--border);background:rgba(79,142,255,0.06);opacity:0;animation:fadeUp .7s .2s forwards;}
-.tag-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:breathe 2s ease-in-out infinite;}
-@keyframes breathe{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.5);opacity:0.4;}}
+/* THE DEMO */
+.demo{margin-top:64px;background:var(--panel);border:2px solid var(--ink);border-radius:18px;padding:28px}
+.demo-h{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline;margin-bottom:18px}
+.demo-h b{font-family:'Bricolage Grotesque';font-size:18px}
+.demo-h span{font-size:14px;color:var(--soft)}
+.prompt{font-size:clamp(19px,2.6vw,28px);font-family:'Bricolage Grotesque';font-weight:500;line-height:1.5;min-height:3.2em}
+.tok{display:inline-block;color:var(--hot);background:color-mix(in srgb,var(--hot) 12%,transparent);padding:0 8px;border-radius:6px;margin:0 3px;animation:pop .35s both}
+@keyframes pop{from{transform:translateY(8px) scale(.9);opacity:0}}
+.out{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+@media(max-width:600px){.out{grid-template-columns:1fr}}
+.o{border:1px dashed var(--line);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--mid);transition:.4s}
+.o small{display:block;color:var(--soft);font-size:13px}
+.o b{color:var(--ink);font-size:17px;font-family:'Bricolage Grotesque'}
+.o.lit{border:2px solid var(--hot);background:color-mix(in srgb,var(--hot) 8%,transparent)}
+.o.lit b{color:var(--hot)}
+.replay{margin-top:16px;background:none;border:none;color:var(--blue);font:600 14px 'Hanken Grotesk';cursor:pointer;padding:0}
 
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(46px,6vw,78px);line-height:1.02;color:var(--text);letter-spacing:-2px;margin-bottom:24px;opacity:0;animation:fadeUp .8s .35s forwards;}
-.hero h1 .line2{font-style:italic;color:transparent;-webkit-text-stroke:1px var(--accent);display:block;}
-.hero h1 .line3{font-size:clamp(30px,4vw,50px);color:var(--text-mid);display:block;font-style:normal;letter-spacing:-1px;}
+/* MARQUEE */
+.marq{border-block:2px solid var(--ink);overflow:hidden;background:var(--ink);color:var(--bg);padding:14px 0}
+.track{display:flex;gap:44px;width:max-content;animation:slide 32s linear infinite;font-family:'Bricolage Grotesque';font-weight:700;font-size:22px;white-space:nowrap}
+.marq:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
 
-.hero-sub{font-size:16px;color:var(--text-mid);line-height:1.85;max-width:500px;margin-bottom:40px;font-weight:300;opacity:0;animation:fadeUp .8s .5s forwards;}
-.hero-btns{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .65s forwards;}
+section{padding:96px 0}
+h2{font-size:clamp(36px,5.5vw,64px);font-weight:800;margin-bottom:14px;max-width:820px}
+.sub{color:var(--mid);max-width:620px;font-size:18px;margin-bottom:46px}
 
-.btn-primary{background:var(--accent);color:var(--bg);padding:14px 32px;border-radius:4px;font-size:13px;font-weight:600;text-decoration:none;letter-spacing:.05em;transition:all .3s;border:1px solid var(--accent);box-shadow:0 0 28px rgba(79,142,255,0.3);position:relative;overflow:hidden;}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(79,142,255,0.5);}
-.btn-ghost{background:transparent;color:var(--text);padding:14px 32px;border-radius:4px;font-size:13px;font-weight:500;text-decoration:none;letter-spacing:.05em;border:1px solid var(--border);transition:all .3s;}
-.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:2px solid var(--ink);border-radius:16px;background:var(--panel);overflow:hidden}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+.st{padding:26px 22px;border-right:2px solid var(--ink)}.st:last-child{border-right:none}
+@media(max-width:760px){.st:nth-child(2){border-right:none}.st:nth-child(-n+2){border-bottom:2px solid var(--ink)}}
+.st b{display:block;font-family:'Bricolage Grotesque';font-size:48px;font-weight:800;line-height:1}
+.st span{font-size:14px;color:var(--mid)}
 
-.hero-stats{display:flex;gap:40px;margin-top:48px;opacity:0;animation:fadeUp .8s .8s forwards;}
-.hstat{border-left:1px solid var(--border);padding-left:20px;}
-.hstat-num{font-family:'Playfair Display',serif;font-size:28px;color:var(--accent);line-height:1;margin-bottom:4px;}
-.hstat-lbl{font-size:11px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;}
+/* CASES */
+.case{background:var(--panel);border:2px solid var(--ink);border-radius:22px;padding:42px;margin-bottom:36px}
+@media(max-width:600px){.case{padding:24px}}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.chip{font-size:13px;font-weight:600;padding:4px 12px;border-radius:99px;background:var(--blue-soft);color:var(--blue)}
+.chip.o{background:none;border:1px solid var(--line);color:var(--mid);font-weight:500}
+.case h3{font-size:clamp(30px,4.4vw,50px);font-weight:800;margin-bottom:14px;max-width:760px}
+.case>p{color:var(--mid);font-size:18px;max-width:700px;margin-bottom:30px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:30px}
+@media(max-width:700px){.nums{grid-template-columns:1fr}}
+.n{background:var(--bg);border-radius:14px;padding:20px}
+.n b{display:block;font-family:'Bricolage Grotesque';font-size:42px;font-weight:800;color:var(--blue);line-height:1;margin-bottom:6px}
+.n span{font-size:14px;color:var(--mid);line-height:1.45;display:block}
+.bars{margin:8px 0 6px}
+.br{display:grid;grid-template-columns:120px 1fr 54px;gap:12px;align-items:center;margin-bottom:10px;font-size:14px}
+.br div{height:14px;background:var(--bg);border-radius:7px;overflow:hidden}
+.br i{display:block;height:100%;width:var(--w);border-radius:7px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.go .br i{transform:scaleX(1)}
+.br i.bad{background:var(--hot)}.br i.ref{background:var(--soft)}.br i.ok{background:var(--good)}
+.br em{font-style:normal;text-align:right;font-weight:600}
+details{border-top:2px solid var(--line);margin-top:22px}
+summary{cursor:pointer;list-style:none;padding:18px 0;font-weight:600;font-size:16px;display:flex;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';font-size:26px;line-height:1;color:var(--blue);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+.d{display:grid;gap:28px;padding:6px 0 8px;animation:open .4s}
+@keyframes open{from{opacity:0;transform:translateY(-8px)}}
+.d h5{font-family:'Bricolage Grotesque';font-size:20px;margin-bottom:6px;letter-spacing:-.02em}
+.d p,.d li{color:var(--mid);font-size:16px}.d ul{padding-left:20px}.d li{margin-bottom:6px}.d strong{color:var(--ink)}
+.tw{overflow-x:auto;border:2px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:480px}
+th,td{padding:10px 14px;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}th{color:var(--soft);font-weight:600}
+tr:last-child td{border:none;font-weight:700}td.g{color:var(--good);font-weight:600}
+.note{border-left:4px solid var(--hot);background:color-mix(in srgb,var(--hot) 8%,transparent);padding:16px 20px;border-radius:0 12px 12px 0;color:var(--mid);font-size:15px}
+.note strong{color:var(--ink)}
+.lk{margin-top:16px;display:flex;gap:20px;flex-wrap:wrap}
+.lk a{font-weight:600;color:var(--blue);text-decoration:none}.lk a:hover{text-decoration:underline}
 
-.hero-photo-wrap{display:flex;justify-content:center;align-items:center;opacity:0;animation:fadeIn 1s .9s forwards;}
-.ring-wrap{position:relative;display:flex;align-items:center;justify-content:center;}
-.hero-photo-ring{position:absolute;width:380px;height:380px;border-radius:50%;border:1px solid rgba(79,142,255,0.12);animation:spin 22s linear infinite;pointer-events:none;}
-.hero-photo-ring::before{content:'';position:absolute;top:-4px;left:50%;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-left:-4px;box-shadow:0 0 14px var(--accent);}
-.hero-photo{width:300px;height:370px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;overflow:hidden;position:relative;}
-.hero-photo::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(79,142,255,0.08),transparent 60%);}
-.hero-photo img{width:100%;height:100%;object-fit:cover;border-radius:8px;}
-.hero-photo-initials{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#1e3a7e);color:var(--text);font-family:'Playfair Display',serif;font-size:36px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(79,142,255,0.4);}
-.hero-photo-note{font-size:12px;color:var(--text-muted);text-align:center;padding:0 24px;line-height:1.6;}
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.pc{background:var(--panel);border:2px solid var(--ink);border-radius:16px;padding:24px;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.pc:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--blue)}
+.pc h4{font-size:24px;margin:12px 0 8px;font-weight:700}.pc p{color:var(--mid);font-size:15px;flex:1}
 
-/* SECTIONS */
-section{padding:100px 6%;position:relative;z-index:2;}
-.section-inner{max-width:1200px;margin:0 auto;}
-.eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
-.eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--accent);}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(34px,4vw,54px);color:var(--text);letter-spacing:-1.5px;line-height:1.05;margin-bottom:16px;}
-.sec-sub{font-size:15px;color:var(--text-muted);max-width:520px;font-weight:300;margin-bottom:56px;line-height:1.8;}
-.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0;}
+/* PAPER */
+.paper{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:800px){.paper{grid-template-columns:1fr}}
+.paper p{color:var(--mid);margin-bottom:14px;font-size:17px}
+.pcard{background:var(--panel);border:2px solid var(--ink);border-radius:16px;padding:28px;box-shadow:8px 8px 0 var(--hot)}
+.pcard small{color:var(--soft);font-size:14px}
+.pcard h4{font-size:26px;margin:8px 0 10px;font-weight:700}
+.pcard a{color:var(--blue);font-weight:600;font-size:14px;word-break:break-all}
 
-/* ABOUT */
-.about{background:var(--bg2);}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-@media(max-width:768px){.about-grid{grid-template-columns:1fr;}}
-.about-text p{font-size:15px;color:var(--text-mid);line-height:1.9;margin-bottom:20px;font-weight:300;}
-.about-text p strong{color:var(--text);font-weight:600;}
-.pub-badge{display:inline-block;padding:6px 14px;background:rgba(240,192,96,0.08);border:1px solid rgba(240,192,96,0.25);border-radius:3px;color:var(--gold);font-size:12px;font-weight:500;letter-spacing:.05em;margin-top:8px;}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.stat-card{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:28px;transition:border-color .3s,transform .3s;position:relative;overflow:hidden;}
-.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
-.stat-card:hover{border-color:var(--border);transform:translateY(-4px);}
-.stat-card:hover::before{transform:scaleX(1);}
-.stat-num{font-family:'Playfair Display',serif;font-size:40px;color:var(--accent);line-height:1;margin-bottom:8px;}
-.stat-lbl{font-size:12px;color:var(--text-muted);letter-spacing:.04em;}
+/* CERTS */
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.cert{background:var(--panel);border:2px solid var(--ink);border-radius:16px;padding:22px;cursor:pointer;text-align:left;font:inherit;color:inherit;transition:transform .2s,box-shadow .2s}
+.cert:hover{transform:rotate(-1.2deg) translateY(-4px);box-shadow:6px 6px 0 var(--blue)}
+.cert .ic{width:44px;height:44px;border-radius:10px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-family:'Bricolage Grotesque';font-weight:800;margin-bottom:14px}
+.cert h4{font-size:19px;font-weight:700;margin-bottom:4px;line-height:1.2}
+.cert p{font-size:14px;color:var(--mid)}
+.cert span{font-size:13px;color:var(--soft)}
+#modal{position:fixed;inset:0;background:rgba(8,10,25,.75);display:none;place-items:center;z-index:200;padding:20px}
+#modal.on{display:grid;animation:fade .25s}
+@keyframes fade{from{opacity:0}}
+#modal .box{background:var(--panel);border-radius:16px;max-width:820px;width:100%;padding:18px;border:2px solid var(--ink)}
+#modal img{border-radius:10px;max-height:70vh;margin:0 auto}
+#modal .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-weight:600}
+#modal button{background:var(--ink);color:var(--bg);border:none;border-radius:8px;padding:7px 14px;font:600 14px 'Hanken Grotesk';cursor:pointer}
 
-/* SKILLS */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
-.skill-card{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:28px;transition:border-color .3s,box-shadow .3s;}
-.skill-card:hover{border-color:var(--border);box-shadow:0 0 30px rgba(79,142,255,0.07);}
-.skill-card h4{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;display:flex;align-items:center;gap:8px;}
-.skill-card h4::before{content:'';display:block;width:16px;height:1px;background:var(--accent);}
-.skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
-.stag{font-size:12px;background:rgba(79,142,255,0.06);color:var(--text-mid);padding:5px 12px;border-radius:3px;border:1px solid var(--border2);transition:all .2s;}
-.stag:hover{background:rgba(79,142,255,0.14);color:var(--accent2);border-color:var(--border);}
-
-/* PROJECTS */
-.projects{background:var(--bg);}
-.projects-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:20px;}
-.gh-status{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);}
-.gh-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:breathe 2s infinite;}
-.gh-dot.loading{background:var(--gold);box-shadow:0 0 8px var(--gold);}
-.gh-dot.error{background:#ef4444;box-shadow:none;animation:none;}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:24px;}
-
-.project-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:32px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.25,.46,.45,.94),border-color .3s,box-shadow .4s;opacity:0;transform:translateY(24px);animation:cardIn .5s forwards;}
-@keyframes cardIn{to{opacity:1;transform:translateY(0);}}
-.project-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(79,142,255,0.06),transparent 60%);opacity:0;transition:opacity .4s;}
-.project-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:scaleX(0);transition:transform .5s;}
-.project-card:hover{transform:translateY(-8px);border-color:var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 40px rgba(79,142,255,0.07);}
-.project-card:hover::before{opacity:1;}
-.project-card:hover::after,.project-card.featured::after{transform:scaleX(1);}
-.project-card.featured{border-color:rgba(79,142,255,0.28);}
-.pc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;}
-.pbadge{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:3px;color:var(--accent);background:rgba(79,142,255,0.1);border:1px solid rgba(79,142,255,0.2);}
-.pbadge.lang{color:var(--text-muted);background:transparent;border-color:var(--border2);}
-.pstars{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:4px;}
-.project-card h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--text);line-height:1.2;margin-bottom:10px;letter-spacing:-.3px;}
-.project-card p{font-size:13px;color:var(--text-muted);line-height:1.8;flex:1;margin-bottom:22px;font-weight:300;}
-.pstack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px;}
-.ptag{font-size:11px;background:rgba(79,142,255,0.05);color:var(--text-muted);padding:3px 10px;border-radius:3px;border:1px solid var(--border2);}
-.plinks{display:flex;gap:16px;margin-top:auto;}
-.plink{font-size:12px;font-weight:500;color:var(--text-mid);text-decoration:none;letter-spacing:.05em;display:flex;align-items:center;gap:5px;transition:color .2s;}
-.plink:hover{color:var(--accent);}
-
-/* Skeleton */
-.skeleton-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:32px;}
-.skel{background:linear-gradient(90deg,var(--bg3) 25%,rgba(255,255,255,0.025) 50%,var(--bg3) 75%);background-size:300% 100%;animation:shimmer 1.5s infinite;border-radius:4px;}
-@keyframes shimmer{to{background-position:-300% 0;}}
-.sk1{height:20px;width:70px;margin-bottom:20px;}.sk2{height:26px;width:85%;margin-bottom:8px;}.sk3{height:26px;width:55%;margin-bottom:20px;}.sk4{height:13px;margin-bottom:8px;}.sk5{height:13px;width:65%;margin-bottom:20px;}.sk-row{display:flex;gap:8px;}.sk6{height:22px;width:55px;border-radius:3px;}
-
-/* EDUCATION */
-.edu-wrap{background:var(--bg2);}
-.edu-card{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:44px;display:grid;grid-template-columns:120px 1fr;gap:48px;align-items:start;transition:border-color .3s;}
-.edu-card:hover{border-color:var(--border);}
-@media(max-width:600px){.edu-card{grid-template-columns:1fr;gap:20px;padding:28px;}}
-.edu-year{font-family:'Playfair Display',serif;font-size:13px;color:var(--text-muted);padding-top:6px;line-height:1.8;border-right:1px solid var(--border2);}
-@media(max-width:600px){.edu-year{border-right:none;border-bottom:1px solid var(--border2);padding-bottom:16px;}}
-.edu-deg{font-family:'Playfair Display',serif;font-size:26px;color:var(--text);letter-spacing:-.5px;margin-bottom:6px;line-height:1.2;}
-.edu-inst{font-size:14px;color:var(--accent2);font-weight:500;margin-bottom:14px;}
-.edu-desc{font-size:14px;color:var(--text-muted);line-height:1.8;font-weight:300;}
-.edu-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
-.etag{font-size:12px;background:rgba(79,142,255,0.06);color:var(--text-muted);padding:5px 12px;border-radius:3px;border:1px solid var(--border2);}
+/* SKILLS / EDU */
+.sk{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px}
+.sk h4{font-size:22px;margin-bottom:10px;font-weight:700}
+.sk div div{display:flex;flex-wrap:wrap;gap:8px}
+.sk span{font-size:14px;padding:5px 13px;border:2px solid var(--ink);border-radius:99px;background:var(--panel);transition:.15s}
+.sk span:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.edu{margin-top:56px;background:var(--panel);border:2px solid var(--ink);border-radius:16px;padding:28px;display:grid;grid-template-columns:150px 1fr;gap:24px}
+@media(max-width:600px){.edu{grid-template-columns:1fr;gap:6px}}
+.edu .y{font-family:'Bricolage Grotesque';font-size:26px;font-weight:800;color:var(--blue)}
+.edu h4{font-size:24px;margin-bottom:4px}.edu p{color:var(--mid)}
 
 /* CONTACT */
-.contact-section{background:var(--bg);}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;}
-@media(max-width:768px){.contact-grid{grid-template-columns:1fr;}}
-.clinks{display:flex;flex-direction:column;gap:14px;}
-.clink{display:flex;align-items:center;gap:18px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:18px 22px;text-decoration:none;transition:border-color .3s,transform .3s;}
-.clink:hover{border-color:var(--border);transform:translateX(6px);}
-.clink-icon{width:42px;height:42px;border-radius:8px;background:rgba(79,142,255,0.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:700;color:var(--accent);}
-.clink-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px;}
-.clink-val{font-size:13px;color:var(--text-mid);}
-.cform{display:flex;flex-direction:column;gap:14px;}
-.cform input,.cform textarea{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:14px 18px;font-size:14px;color:var(--text);font-family:'Syne',sans-serif;transition:border-color .3s;resize:none;outline:none;}
-.cform input::placeholder,.cform textarea::placeholder{color:var(--text-muted);}
-.cform input:focus,.cform textarea:focus{border-color:var(--border);}
-.cform button{background:var(--accent);color:var(--bg);border:none;padding:15px 28px;border-radius:6px;font-size:13px;font-weight:600;letter-spacing:.05em;cursor:pointer;font-family:'Syne',sans-serif;transition:all .3s;text-align:left;box-shadow:0 0 20px rgba(79,142,255,0.28);}
-.cform button:hover{box-shadow:0 0 40px rgba(79,142,255,0.5);transform:translateY(-2px);}
+.contact{background:var(--ink);color:var(--bg);text-align:center;padding:120px 0}
+.contact h2{margin:0 auto 18px;font-size:clamp(40px,7vw,88px)}
+.contact p{color:color-mix(in srgb,var(--bg) 72%,transparent);margin-bottom:32px;font-size:18px}
+.contact .btn{border-color:var(--bg);color:var(--bg)}.contact .btn.f{background:var(--bg);color:var(--ink)}
+.contact .btn:hover{box-shadow:4px 4px 0 var(--hot)}
+.so{display:flex;justify-content:center;gap:28px;margin-top:34px;flex-wrap:wrap}
+.so a{color:var(--bg);opacity:.75;text-decoration:none}.so a:hover{opacity:1}
+footer{background:var(--ink);color:var(--soft);padding:0 0 26px;text-align:center;font-size:13px}
 
-footer{background:var(--bg2);border-top:1px solid var(--border2);padding:28px 6%;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-muted);flex-wrap:wrap;gap:12px;z-index:2;position:relative;}
-footer a{color:var(--text-muted);text-decoration:none;transition:color .2s;}
-footer a:hover{color:var(--accent);}
-
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes spin{to{transform:rotate(360deg);}}
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease;}
-.reveal-left.visible{opacity:1;transform:translateX(0);}
-.reveal-right{opacity:0;transform:translateX(32px);transition:opacity .7s ease,transform .7s ease;}
-.reveal-right.visible{opacity:1;transform:translateX(0);}
-.stagger>*{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;}
-.stagger.visible>*:nth-child(1){opacity:1;transform:none;transition-delay:0ms;}
-.stagger.visible>*:nth-child(2){opacity:1;transform:none;transition-delay:100ms;}
-.stagger.visible>*:nth-child(3){opacity:1;transform:none;transition-delay:200ms;}
-.stagger.visible>*:nth-child(4){opacity:1;transform:none;transition-delay:300ms;}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.rv.in{opacity:1;transform:none}
+/* ===== NEW: animations ===== */
+.hero{position:relative;overflow:hidden}
+#net{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero .wrap{position:relative;z-index:2}
+h1 .ln{display:block;overflow:hidden;padding:.04em 0 .1em;line-height:1}
+h1 .l3{font-size:.52em;color:var(--mid);font-weight:700}
+h1 .ch{display:inline-block;animation:chIn .9s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i)*45ms)}
+h1 .l2 .ch{color:transparent;-webkit-text-stroke:2px var(--blue);animation:chIn .9s cubic-bezier(.2,.8,.2,1) backwards,flash 1.8s ease-in-out 1;animation-delay:calc(var(--i)*45ms),calc(1.4s + var(--i)*80ms)}
+@keyframes chIn{from{transform:translateY(110%) rotate(6deg);opacity:0}}
+@keyframes flash{0%,100%{color:transparent}50%{color:var(--blue)}}
+.photo{animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+nav a:not(.cv){background:linear-gradient(var(--blue),var(--blue)) 0 100%/0 2px no-repeat;padding-bottom:3px;transition:background-size .3s,color .2s}
+nav a:not(.cv):hover{background-size:100% 2px}
+.case{transition:box-shadow .3s,transform .3s}
+.case:hover{box-shadow:10px 10px 0 var(--blue)}
+#cur{position:fixed;left:0;top:0;width:34px;height:34px;border:2px solid var(--blue);border-radius:50%;pointer-events:none;z-index:300;display:none;transition:width .25s,height .25s,background .25s}
+@media(hover:hover) and (pointer:fine){#cur{display:block}}
+#cur.big{width:64px;height:64px;background:color-mix(in srgb,var(--blue) 15%,transparent)}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em}
+.w>span{display:inline-block;transform:translateY(105%);transition:transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i)*70ms)}
+h2.in .w>span{transform:none}
+.stag:not(.in)>*{opacity:0}
+.stag.in>*{animation:rise .7s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--d,0)*90ms)}
+@keyframes rise{from{opacity:0;transform:translateY(30px) scale(.95)}}
+.stag>*:nth-child(2){--d:1}.stag>*:nth-child(3){--d:2}.stag>*:nth-child(4){--d:3}.stag>*:nth-child(5){--d:4}.stag>*:nth-child(6){--d:5}.stag>*:nth-child(7){--d:6}.stag>*:nth-child(8){--d:7}
+.ghs{display:flex;gap:10px;align-items:center;color:var(--mid);font-size:15px;margin-bottom:22px}
+.ghd{width:9px;height:9px;border-radius:50%;background:var(--good);animation:pulse 2s infinite}
+.ghd.err{background:var(--hot);animation:none}
+.shim{height:190px;border:2px solid var(--line);border-radius:16px;background:linear-gradient(90deg,var(--panel) 25%,var(--bg) 50%,var(--panel) 75%);background-size:300% 100%;animation:shim 1.4s infinite}
+@keyframes shim{to{background-position:-300% 0}}
+.meta{font-size:13px;color:var(--soft);margin-top:8px}
+/* ===== demo loop + ledger ===== */
+.caret::after{content:'';display:inline-block;width:3px;height:1em;background:var(--blue);margin-left:3px;vertical-align:-.12em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.prompt{transition:opacity .5s}.prompt.fade{opacity:0}
+.sbar{height:6px;background:var(--bg);border-radius:4px;overflow:hidden;margin-top:16px}
+.sbar i{display:block;height:100%;width:0;background:var(--hot);transition:width .3s}
+.sl{font-size:13px;color:var(--soft);margin-top:6px;min-height:1.4em}
+.o.hit{animation:shake .5s}
+@keyframes shake{20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.chain{display:flex;overflow-x:auto;padding:12px 4px 18px;align-items:stretch}
+.blk{flex:0 0 190px;border:2px solid var(--ink);border-radius:12px;padding:12px;background:var(--bg);font-size:13px;color:var(--mid);transition:border-color .3s,background .3s}
+.blk b{display:block;font-family:'Bricolage Grotesque';font-size:16px;color:var(--ink);margin-bottom:4px}
+.blk .lbl{color:var(--soft);font-size:12px;margin-top:8px}
+.blk code{display:block;font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--blue);word-break:break-all}
+.blk.bad{border-color:var(--hot);background:color-mix(in srgb,var(--hot) 10%,transparent)}
+.blk.bad code{color:var(--hot)}
+.blk.pulse{animation:bp .7s}
+@keyframes bp{40%{transform:translateY(-8px);box-shadow:0 8px 0 var(--blue)}}
+.lnk{flex:0 0 28px;align-self:center;height:4px;background:var(--blue);transition:background .3s}
+.lnk.bad{background:var(--hot)}
+.cstat{font-weight:600;margin:6px 0 14px}
+.cb{display:flex;gap:12px;flex-wrap:wrap}
+.cb button{background:var(--panel);color:var(--ink);cursor:pointer;font-family:inherit}
+/* ===== fix: keep text inside the card ===== */
+.d{grid-template-columns:minmax(0,1fr)}
+.d>div{min-width:0}
+.chain{max-width:100%}
+.flow{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.fs{flex:1 1 160px;border:2px solid var(--line);border-radius:12px;padding:14px;font-size:13px;color:var(--mid);line-height:1.5;animation:fstep 8s ease-in-out infinite}
+.fs b{display:block;font-family:'Bricolage Grotesque';font-size:17px;color:var(--ink);margin-bottom:4px}
+.fs:nth-child(2){animation-delay:2s}.fs:nth-child(3){animation-delay:4s}.fs:nth-child(4){animation-delay:6s}
+@keyframes fstep{0%,22%{border-color:var(--blue);background:var(--blue-soft);transform:translateY(-5px)}30%,100%{border-color:var(--line);background:transparent;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.br i{transform:scaleX(1)}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
+<div id="cur"></div>
+<header><div class="wrap">
+  <a class="logo" href="#top">Jalal Abedin</a>
+  <nav><a href="#work">Work</a><a href="#paper">Research</a><a href="#certs">Certificates</a><a href="#skills">Skills</a><a href="#contact">Contact</a><a class="cv" href="assets/Jalal-Abedin-CV.pdf" target="_blank" rel="noopener">Download CV</a></nav>
+</div></header>
 
-<div id="progress"></div>
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-<canvas id="bg-canvas"></canvas>
-
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#">Jalal<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact" class="nav-cta">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-inner">
+<main id="top">
+<div class="hero"><canvas id="net"></canvas><div class="wrap">
+  <div class="hero-grid">
     <div>
-      <div class="hero-tag"><span class="tag-dot"></span>Available for ML/AI Roles</div>
-      <h1>Jalal Abedin.<span class="line2">ML Engineer</span><span class="line3">&amp; Researcher.</span></h1>
-      <p class="hero-sub">Final-year CSE student at North South University, specializing in adversarial machine learning, federated learning, and computer vision research.</p>
-      <div class="hero-btns">
-        <a class="btn-primary" href="#projects">View Projects</a>
-        <a class="btn-ghost" href="mailto:jalalabedin200217@gmail.com">Get in Touch</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hstat"><div class="hstat-num" data-count="6">0</div><div class="hstat-lbl">GitHub Projects</div></div>
-        <div class="hstat"><div class="hstat-num">1</div><div class="hstat-lbl">Published Paper</div></div>
-        <div class="hstat"><div class="hstat-num" data-count="97">0</div><div class="hstat-lbl">% Best Accuracy</div></div>
-      </div>
+      <div class="status"><i></i>Open to ML and AI roles in Dhaka</div>
+      <h1 id="hname" aria-label="Jalal Abedin, ML Engineer and Researcher"><span class="ln l1">Jalal Abedin.</span><span class="ln l2">ML Engineer</span><span class="ln l3">&amp; Researcher.</span></h1>
+      <p class="intro">I'm a machine learning engineer. For my thesis and final year project I spent a year making image models fail on purpose, then building the checks that catch it. One paper is published at IEEE and a second is under review.</p>
+      <div class="btns"><a class="btn f" href="#work">See the projects</a><a class="btn" href="mailto:jalalabedin200217@gmail.com">Email me</a></div>
     </div>
-    <div class="hero-photo-wrap">
-      <div class="ring-wrap">
-        <div class="hero-photo-ring"></div>
-         <div class="hero-photo">
-          <img src="photo.jpg" alt="Jalal Abedin"/>
-         </div>
-      </div>
-    </div>
+    <div class="photo"><img src="photo.jpg" alt="Jalal Abedin" onerror="this.style.display='none'"/></div>
   </div>
-</section>
 
-<div class="divider"></div>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="section-inner">
-    <p class="eyebrow reveal">About</p>
-    <h2 class="sec-title reveal">Building AI<br>that matters.</h2>
-    <div class="about-grid">
-      <div class="about-text reveal-left">
-        <p>I'm <strong>Jalal Abedin</strong>, a final-year CSE student at North South University, Dhaka. My research sits at the intersection of <strong>adversarial machine learning</strong>, <strong>federated learning</strong>, and <strong>computer vision</strong>.</p>
-        <p>My Final Year Project — <strong>PromptTrace</strong> — investigates GCG-style adversarial suffix attacks on POS tags targeting Stable Diffusion v1.5, evaluated with ASR and Semantic Shift Rate (SemSR) metrics.</p>
-        <p>I've co-authored a paper on real-synthetic artwork classification using Vision Transformers (DaViT, MViT). Actively seeking <strong>ML-leaning Data Science roles</strong> post-graduation.</p>
-        <span class="pub-badge">✦ Published · ICIICE 2026 · Real-Synthetic Artwork Classification</span>
-      </div>
-      <div class="stat-grid reveal-right">
-        <div class="stat-card"><div class="stat-num">6+</div><div class="stat-lbl">ML Projects on GitHub</div></div>
-        <div class="stat-card"><div class="stat-num">1</div><div class="stat-lbl">Published Paper</div></div>
-        <div class="stat-card"><div class="stat-num">97.5%</div><div class="stat-lbl">Best Model Accuracy</div></div>
-        <div class="stat-card"><div class="stat-num">2026</div><div class="stat-lbl">Expected Graduation</div></div>
-      </div>
+  <div class="demo" aria-label="Demo of an adversarial prompt attack">
+    <div class="demo-h"><b>What my final year project does</b><span>Real example from the project report</span></div>
+    <div class="prompt" id="prompt" aria-live="polite"></div>
+    <div class="sbar"><i id="sb"></i></div><div class="sl" id="sl"></div>
+    <div class="out">
+      <div class="o" id="o1"><small>The user asked for</small><b>a teddy bear by a pillow</b></div>
+      <div class="o" id="o2"><small>Stable Diffusion draws</small><b id="o2t">waiting for the prompt</b></div>
     </div>
+    <button class="replay" id="replay">Run it again</button>
   </div>
-</section>
+</div></div>
 
-<div class="divider"></div>
+<div class="marq" aria-hidden="true"><div class="track" id="track"></div></div>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-inner">
-    <p class="eyebrow reveal">Skills</p>
-    <h2 class="sec-title reveal">Technical toolkit.</h2>
-    <p class="sec-sub reveal">Tools and frameworks I use to build and research.</p>
-    <div class="skills-grid stagger reveal">
-      <div class="skill-card"><h4>ML / Deep Learning</h4><div class="skill-tags"><span class="stag">PyTorch</span><span class="stag">TensorFlow</span><span class="stag">Scikit-learn</span><span class="stag">HuggingFace</span><span class="stag">CLIP</span><span class="stag">Stable Diffusion</span></div></div>
-      <div class="skill-card"><h4>Research Areas</h4><div class="skill-tags"><span class="stag">Adversarial ML</span><span class="stag">Federated Learning</span><span class="stag">Computer Vision</span><span class="stag">NLP</span><span class="stag">Diffusion Models</span></div></div>
-      <div class="skill-card"><h4>Languages &amp; Tools</h4><div class="skill-tags"><span class="stag">Python</span><span class="stag">SQL</span><span class="stag">PHP</span><span class="stag">Git</span><span class="stag">Google Colab</span><span class="stag">Kaggle</span></div></div>
-      <div class="skill-card"><h4>Frameworks &amp; Infra</h4><div class="skill-tags"><span class="stag">Flask</span><span class="stag">Streamlit</span><span class="stag">IPFS</span><span class="stag">Blockchain</span><span class="stag">PySyft</span><span class="stag">ngrok</span></div></div>
-    </div>
+<section style="padding-bottom:0"><div class="wrap">
+  <div class="stats rv">
+    <div class="st"><b data-n="1">0</b><span>IEEE paper published</span></div>
+    <div class="st"><b data-n="8">0</b><span>model backbones benchmarked</span></div>
+    <div class="st"><b data-n="1200">0</b><span>attacks evaluated by hand and by metric</span></div>
+    <div class="st"><b data-n="800">0</b><span>GPU hours of experiments</span></div>
   </div>
-</section>
+</div></section>
 
-<div class="divider"></div>
+<section id="work"><div class="wrap">
+  <h2 class="rv">Two research projects, with the numbers and the limits.</h2>
+  <p class="sub rv">Open a project to read the problem, how it was built, the results, and what didn't work.</p>
 
-<!-- PROJECTS -->
-<section class="projects" id="projects">
-  <div class="section-inner">
-    <div class="projects-header reveal">
-      <div>
-        <p class="eyebrow">Projects</p>
-        <h2 class="sec-title">Work &amp; research.</h2>
-        <p class="sec-sub" style="margin-bottom:0">Auto-synced from GitHub — every new repo appears automatically.</p>
-      </div>
-      <div class="gh-status">
-        <span class="gh-dot loading" id="gh-dot"></span>
-        <span id="gh-status-text">Loading from GitHub…</span>
-      </div>
+  <article class="case rv" id="c1">
+    <div class="chips"><span class="chip">Under review at IEEE Access</span><span class="chip o">Federated learning</span><span class="chip o">Computer vision</span><span class="chip o">Audit ledger</span></div>
+    <h3>ChainGuardFL: checking the data behind a federated model</h3>
+    <p>In federated learning the server never sees what clients train on. This project screens every client's images for AI-generated fakes and duplicates before training starts, and records each decision in a ledger anyone can verify.</p>
+    <div class="nums">
+      <div class="n"><b>6.77</b><span>accuracy points lost on average when fakes and duplicates got into the data</span></div>
+      <div class="n"><b>2.15</b><span>points won back by the filter, for all 8 backbones</span></div>
+      <div class="n"><b>31.7%</b><span>faster training rounds, since 37.1% of the images were removed</span></div>
     </div>
-    <div class="projects-grid" id="projects-grid">
-      <div class="skeleton-card"><div class="skel sk1"></div><div class="skel sk2"></div><div class="skel sk3"></div><div class="skel sk4"></div><div class="skel sk5"></div><div class="sk-row"><div class="skel sk6"></div><div class="skel sk6"></div><div class="skel sk6"></div></div></div>
-      <div class="skeleton-card"><div class="skel sk1"></div><div class="skel sk2"></div><div class="skel sk3"></div><div class="skel sk4"></div><div class="skel sk5"></div><div class="sk-row"><div class="skel sk6"></div><div class="skel sk6"></div><div class="skel sk6"></div></div></div>
-      <div class="skeleton-card"><div class="skel sk1"></div><div class="skel sk2"></div><div class="skel sk3"></div><div class="skel sk4"></div><div class="skel sk5"></div><div class="sk-row"><div class="skel sk6"></div><div class="skel sk6"></div><div class="skel sk6"></div></div></div>
+    <div class="bars">
+      <div class="br"><span>Clean data</span><div><i style="--w:77%"></i></div><em>61.9</em></div>
+      <div class="br"><span>Fakes mixed in</span><div><i class="bad" style="--w:69%"></i></div><em>55.1</em></div>
+      <div class="br"><span>With filter</span><div><i class="ok" style="--w:71.5%"></i></div><em>57.3</em></div>
+      <div class="br"><span>Centralized</span><div><i class="ref" style="--w:83.7%"></i></div><em>67.0</em></div>
     </div>
+    <p style="font-size:13px;color:var(--soft);margin:0">Average test accuracy (%) over 8 backbones. Centralized figures come from an earlier benchmark on the same dataset.</p>
+    <details><summary>Read the full case study</summary><div class="d">
+      <div><h5>The problem</h5><p>FedAvg assumes every image a client holds is real. Two things break that. A client's data can contain <strong>AI-generated artwork</strong>, by accident or on purpose. And the <strong>same painting</strong> can arrive through several clients at different sizes or formats, which quietly gives it extra weight. Afterwards, nobody but the server operator can check what was accepted or rejected.</p></div>
+      <div><h5>How it works</h5><ul>
+        <li><strong>Fake filter.</strong> A DaViT-Base real versus fake classifier scores each training image once, before round 1. Anything scoring above 0.5 is dropped.</li>
+        <li><strong>Duplicate registry.</strong> Each image is converted to RGB, resized to 256 by 256 and hashed with SHA-256. The same artwork gives the same hash in any file format, so copies from other clients are rejected.</li>
+        <li><strong>Training.</strong> 10 clients with uneven class splits (Dirichlet 0.5), 50 rounds of standard FedAvg on the verified data.</li>
+        <li><strong>Ledger.</strong> Every verdict, update hash and global model hash goes into a SHA-256 chain, so editing an old record breaks every later one.</li></ul>
+        <p style="margin-top:8px">It adds a step in front of FedAvg and leaves the aggregation rule alone, so the checking cost is paid once instead of every round.</p></div>
+      <div><h5>Results for each backbone (test accuracy, %)</h5><div class="tw"><table>
+        <thead><tr><th>Backbone</th><th>Clean</th><th>Fakes mixed</th><th>Filtered</th><th>Recovered</th></tr></thead><tbody>
+        <tr><td>Inception-ResNet-V2</td><td>54.40</td><td>47.16</td><td>50.88</td><td class="g">+3.72</td></tr>
+        <tr><td>ResNet-101</td><td>56.36</td><td>53.23</td><td>54.03</td><td class="g">+0.80</td></tr>
+        <tr><td>ViT-B/16</td><td>62.82</td><td>55.77</td><td>56.56</td><td class="g">+0.79</td></tr>
+        <tr><td>MaxViT-tiny</td><td>59.69</td><td>55.19</td><td>56.56</td><td class="g">+1.37</td></tr>
+        <tr><td>MViTv2-tiny</td><td>65.17</td><td>59.30</td><td>61.64</td><td class="g">+2.34</td></tr>
+        <tr><td>FocalNet-tiny</td><td>65.95</td><td>55.58</td><td>58.32</td><td class="g">+2.74</td></tr>
+        <tr><td>DaViT-base</td><td>66.54</td><td>56.67</td><td>58.71</td><td class="g">+2.04</td></tr>
+        <tr><td>RepViT-m3</td><td>63.99</td><td>57.84</td><td>61.27</td><td class="g">+3.43</td></tr>
+        <tr><td>Average</td><td>61.86</td><td>55.09</td><td>57.25</td><td class="g">+2.15</td></tr></tbody></table></div>
+        <p style="margin-top:12px">The ordering fakes mixed, then filtered, then clean, then centralized held for every backbone. A model's centralized rank did not predict its federated rank: RepViT-m3 was fourth centrally and second after filtering.</p></div>
+      <div><h5>How good is the filter?</h5><p>On 7,575 training images it caught 1,965 of 2,407 fakes (81.6% recall) with 70.0% precision, and wrongly removed 843 real images.</p></div>
+      <div class="note"><strong>What the numbers really say.</strong> The filter recovers about a third of the damage. The 9.73 point gap to centralized training is roughly 5.11 from federated training itself and 4.62 from fakes that got through. Part of the speed gain is simply less data.</div>
+      <div><h5>Limitations</h5><ul>
+        <li>The filter runs once, so a weakness against a new image generator affects the whole run.</li>
+        <li>The ledger is a hash chain inside one process. It shows tampering but has no multi-node consensus.</li>
+        <li>Only pixel-identical copies are caught, not two photos of the same painting.</li>
+        <li>It checks data, not weight updates, so a poisoned update would pass.</li>
+        <li>Everything was tested at a single heterogeneity setting.</li></ul></div>
+      <div><h5>The audit ledger</h5>
+<p>Every integrity decision is written to a SHA-256 hash chain, so the whole training run can be checked afterwards. The chain is implemented in Python with <strong>hashlib</strong> and runs inside the training process. It is not Ethereum, Hyperledger or any public network, and the report says so openly: it proves that records were changed, but it has no independent validator nodes.</p>
+<p style="margin-top:10px">Each block stores its index, its payload, and the hash of the block before it. The block hash is <strong>SHA-256(index + payload + previous hash)</strong>. Change any old record and every block after it stops matching.</p>
+<div class="chain" id="chain" aria-label="Interactive hash chain"></div>
+<p class="cstat" id="cstat"></p>
+<div class="cb"><button class="btn" id="tamper">Tamper with block 2</button><button class="btn" id="fix">Restore the chain</button></div>
+<p style="font-size:13px;color:var(--soft);margin-top:10px">The records above are illustrative. The hashing is real and runs in your browser.</p></div>
+<div><h5>What gets recorded</h5><ul>
+<li><strong>Filter verdicts:</strong> client, image pixel hash, DaViT score, kept or removed.</li>
+<li><strong>Duplicate registry:</strong> each registration, and each rejection with the original owner and timestamp.</li>
+<li><strong>Training:</strong> a hash of every client's weight update, and a hash of each global model.</li>
+<li><strong>Final certificate:</strong> written once all 50 rounds are done.</li></ul></div>
+<div><h5>Where it connects to the pipeline</h5><p>The ledger is written to at both stages. Before round 1, the filter and the registry log every verdict. Then in each round, every client update is hashed and logged before it reaches the server, and the new global model is hashed and logged after FedAvg. A live dashboard shows the latest block hash, the block count and whether the chain is valid.</p></div>
+    </div></details>
+    <div class="lk"><a href="https://github.com/Jalalab/[CHAINGUARDFL-REPO]" target="_blank" rel="noopener">Source code</a></div>
+  </article>
+
+  <article class="case rv" id="c2">
+    <div class="chips"><span class="chip">Final year project</span><span class="chip o">Adversarial ML</span><span class="chip o">Diffusion models</span><span class="chip o">LLM agents</span></div>
+    <h3>POSAttack: tricking Stable Diffusion, then catching the trick</h3>
+    <p>Eight extra words on a harmless prompt can make the model draw something else. I made that attack succeed more often, then built an agent that finds the injected words anywhere in a sentence and repairs the prompt.</p>
+    <div class="nums">
+      <div class="n"><b>1 to 5</b><span>points higher attack success than the random-start baseline, in every word category</span></div>
+      <div class="n"><b>55%</b><span>of 182 successful attacks undone by the agent, by automatic scoring</span></div>
+      <div class="n"><b>80%</b><span>undone when four people judged the same images</span></div>
+    </div>
+    <div class="bars">
+      <div class="br"><span>Mahalanobis</span><div><i class="ref" style="--w:40%"></i></div><em>40%</em></div>
+      <div class="br"><span>Agent, auto</span><div><i style="--w:55%"></i></div><em>55%</em></div>
+      <div class="br"><span>Agent, human</span><div><i class="ok" style="--w:80%"></i></div><em>80%</em></div>
+    </div>
+    <p style="font-size:13px;color:var(--soft);margin:0">Share of the 182 successful attacks that each defense reversed.</p>
+    <details><summary>Read the full case study</summary><div class="d">
+      <div><h5>The problem</h5><p>Add a short run of odd tokens to "a little teddy bear sitting by a pillow" and the model draws the bear by a window. The sentence still reads the same, but its embedding has moved. Earlier work found nouns easy to attack and adverbs hard, yet started every search from random tokens and tested no defense.</p></div>
+      <div><h5>The attack</h5><ul>
+        <li><strong>Warm start.</strong> I searched about 49,000 CLIP tokens for the ones nearest the target word, dropped junk fragments, and ranked each by how far it pulls the sentence toward the target.</li>
+        <li><strong>Crossover and mutation.</strong> The three best tokens are recombined into a ten-token starting suffix.</li>
+        <li><strong>GCG search.</strong> The standard optimizer then runs 100 steps, five times per prompt, and each run is judged on seven images. Only the starting point changed.</li></ul></div>
+      <div><h5>Attack success rate, 600 prompt pairs per setting</h5><div class="tw"><table>
+        <thead><tr><th>Word type</th><th>Baseline</th><th>Mine</th><th>Baseline, restricted</th><th>Mine, restricted</th></tr></thead><tbody>
+        <tr><td>Noun</td><td>0.65</td><td class="g">0.69</td><td>0.51</td><td class="g">0.53</td></tr>
+        <tr><td>Proper noun</td><td>0.40</td><td class="g">0.45</td><td>0.31</td><td class="g">0.33</td></tr>
+        <tr><td>Adjective</td><td>0.29</td><td class="g">0.30</td><td>0.24</td><td class="g">0.25</td></tr>
+        <tr><td>Verb</td><td>0.15</td><td class="g">0.16</td><td>0.12</td><td class="g">0.13</td></tr>
+        <tr><td>Numeral</td><td>0.13</td><td class="g">0.15</td><td>0.11</td><td class="g">0.13</td></tr>
+        <tr><td>Adverb</td><td>0.03</td><td class="g">0.07</td><td>0.01</td><td class="g">0.06</td></tr></tbody></table></div></div>
+      <div><h5>Why some words resist</h5><ul>
+        <li>Attention maps showed that only two or three suffix tokens do the work. For the target "gun", they were "revolver" and "scope".</li>
+        <li>With no attack at all, Stable Diffusion loses count past three and barely reacts to adverbs, so there is little signal to push on.</li></ul></div>
+      <div><h5>The defense</h5><ul>
+        <li><strong>Perplexity filter.</strong> Weak, because many suffixes still read as plausible English.</li>
+        <li><strong>Mahalanobis filter.</strong> Reversed 40% (72 of 182), but gives one score and no location.</li>
+        <li><strong>CLIP-ReAct agent.</strong> A Llama-3.3-70B agent scans the sentence with a sliding CLIP anomaly tool, points at the injected span wherever it sits, and rewrites the prompt five different ways. It reversed 100 of 182 by automatic scoring.</li></ul></div>
+      <div class="note"><strong>The automatic score was too harsh.</strong> Four human evaluators marked about 80% as defended (145.5 of 182) and agreed with CLIP only 68.4% of the time. For nouns, reviewers also preferred the baseline's images even though my method scored higher, so a higher score doesn't always mean a better picture.</div>
+      <div><h5>The tool around it</h5><p>One attack takes about 40 minutes, so I built a Flask app with a live attack log, all three defenses and a results dashboard, plus an annotation tool for judging 1,200 images by hand.</p></div>
+      <div><h5>Limitations</h5><ul>
+        <li>Only Stable Diffusion v1.5 was tested.</li>
+        <li>CLIP judges both the attack and the defense.</li>
+        <li>The defenses were tested only against this one attack.</li>
+        <li>The agent relies on a hosted model (Groq), which affects reproducibility.</li></ul></div>
+      <div><h5>My part: the CLIP-ReAct defense agent</h5>
+<p>I built the agent-based defense. It uses Llama-3.3-70B through the Groq API, and it was designed to fix a weakness in the two simpler filters: they give one score for the whole sentence and cannot say which words are the attack. My agent finds the injected words, wherever they are, and repairs the prompt.</p>
+<div class="flow" aria-label="CLIP-ReAct defense steps">
+<div class="fs"><b>Scan</b><span>A tool slides a window of 1 to 4 words over the whole sentence and gives each span a CLIP anomaly score.</span></div>
+<div class="fs"><b>Decide</b><span>The agent reads the top 15 spans and points at the injected one. It may call the tool twice at most.</span></div>
+<div class="fs"><b>Repair</b><span>Five fixes run on the flagged span: fuzzy removal, grammar repair, paraphrase, best cut by perplexity, plain rewrite.</span></div>
+<div class="fs"><b>Check</b><span>Stable Diffusion draws 7 images per fix. If 4 match the original idea, the attack counts as defended.</span></div>
+</div></div>
+<div><h5>How I built it</h5><ul>
+<li><strong>Anomaly score.</strong> One minus the CLIP similarity between a span and the rest of the sentence. A high score means the span doesn't belong.</li>
+<li><strong>Calibration.</strong> I took real injected spans by comparing each prompt with its attacked version word by word, and clean spans from random windows of normal prompts. Then I searched every threshold for the best F1 score and fixed it at 0.6204.</li>
+<li><strong>ReAct loop.</strong> The agent follows a Thought, Action, Observation cycle. It combines the score with its own reading of the sentence, because a rare but harmless word can also score high.</li>
+<li><strong>Safe failures.</strong> If the model's answer can't be read or the loop runs out, the sentence is treated as clean, so a bad response never stops the evaluation.</li>
+<li><strong>Five repair strategies.</strong> Three use the LLM and two don't. If an LLM call fails, that run falls back to fuzzy removal.</li></ul></div>
+<div><h5>What it achieved</h5><p>Of 182 successful attacks, the agent reversed 100 by automatic scoring (55%), against 40% for the Mahalanobis filter. It worked best on proper nouns (67%), adjectives (60%) and nouns (59%), and worst on adverbs, where it reversed none of the 7. Human reviewers later judged about 80% defended, which showed the automatic score was too strict.</p></div></div>
+<div><h5>What I built and measured</h5><ul>
+<li><strong>Perplexity filter.</strong> Threshold set at the 95th percentile of 600 clean prompts (283.46), plus a character-swap step based on SmoothLLM.</li>
+<li><strong>Mahalanobis filter.</strong> Sentence-BERT embeddings with a Ledoit-Wolf covariance fitted on about 120 unique clean prompts. It reversed 40% of the attacks.</li>
+<li><strong>CLIP-ReAct agent.</strong> The anomaly threshold (0.6204) was tuned for the best F1 score on real injected spans against clean ones. It reversed 55% by automatic scoring.</li>
+<li><strong>Human evaluation.</strong> Four evaluators reviewed the defense results. They judged about 80% defended, which showed that the automatic score undercounts.</li></ul></div>
+    </div></details>
+    <div class="lk"><a href="https://github.com/Jalalab/[POSATTACK-REPO]" target="_blank" rel="noopener">Source code</a></div>
+  </article>
+
+  <h3 class="rv" style="font-size:34px;margin:60px 0 10px">More projects</h3>
+  <div class="ghs rv"><i class="ghd" id="ghdot"></i><span id="ghtxt">Loading from GitHub</span></div>
+  <div class="pg rv" id="ghgrid"><div class="shim"></div><div class="shim"></div><div class="shim"></div></div>
+  <button class="btn" id="ghmore" style="display:none;margin-top:26px">Show more projects</button>
+</div></section>
+
+<section id="paper" style="background:var(--panel);border-block:2px solid var(--ink)"><div class="wrap">
+  <div class="paper">
+    <div class="rv">
+      <h2>Published at IEEE ICIICE 2026</h2>
+      <p>I presented this paper orally in Dubai. It tells real artwork from AI-generated artwork using vision transformers.</p>
+      <p>The same classifier became the fake filter inside ChainGuardFL, so the two projects are one line of work.</p>
+    </div>
+    <div class="pcard rv"><small>IEEE conference paper, 2026</small><h4>Real and Fake Art Prediction Using Deep Learning</h4><a href="https://doi.org/10.1109/ICIICE69672.2026.11565256" target="_blank" rel="noopener">doi.org/10.1109/ICIICE69672.2026.11565256</a></div>
   </div>
-</section>
+</div></section>
 
-<div class="divider"></div>
+<section id="certs"><div class="wrap">
+  <h2 class="rv">Certificates</h2>
+  <p class="sub rv">Click one to see the certificate.</p>
+  <div class="certs rv" id="certGrid"></div>
+</div></section>
 
-<!-- EDUCATION -->
-<section class="edu-wrap" id="education">
-  <div class="section-inner">
-    <p class="eyebrow reveal">Education</p>
-    <h2 class="sec-title reveal">Academic background.</h2>
-    <p class="sec-sub reveal" style="margin-bottom:32px;">Building a strong foundation in CS and applied ML.</p>
-    <div class="edu-card reveal">
-      <div class="edu-year">2022<br>—<br>2026</div>
-      <div>
-        <div class="edu-deg">B.Sc. Computer Science &amp; Engineering</div>
-        <div class="edu-inst">North South University, Dhaka, Bangladesh</div>
-        <p class="edu-desc">Final-year student specializing in machine learning, algorithms, and applied AI research. Enrolled in CSE498R (Research) and CSE499 (Final Year Project). Co-author of a paper at ICIICE 2026 on real-synthetic artwork classification using Vision Transformers.</p>
-        <div class="edu-tags">
-          <span class="etag">Deep Learning</span><span class="etag">Data Structures &amp; Algorithms</span><span class="etag">Machine Learning</span><span class="etag">Computer Vision</span><span class="etag">NLP</span><span class="etag">Discrete Math</span>
-        </div>
-      </div>
-    </div>
+<section id="skills" style="padding-top:0"><div class="wrap">
+  <h2 class="rv">Tools I use</h2>
+  <div class="sk rv" style="margin-top:34px">
+    <div><h4>Machine learning</h4><div><span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span><span>Hugging Face</span><span>CLIP</span><span>Stable Diffusion</span><span>SHAP</span></div></div>
+    <div><h4>Research areas</h4><div><span>Adversarial ML</span><span>Federated learning</span><span>Computer vision</span><span>NLP</span><span>LLM agents</span></div></div>
+    <div><h4>Languages and tools</h4><div><span>Python</span><span>SQL</span><span>PHP</span><span>Git</span><span>Colab</span><span>Kaggle</span></div></div>
+    <div><h4>Shipping</h4><div><span>Flask</span><span>Streamlit</span><span>HF Spaces</span><span>ngrok</span></div></div>
   </div>
-</section>
+  <div class="edu rv"><div class="y">2022 to 2026</div><div><h4>BSc in Computer Science and Engineering</h4><p>North South University, Dhaka. Thesis (CSE498R) and senior design project (CSE499) in adversarial and federated machine learning.</p></div></div>
+</div></section>
 
-<div class="divider"></div>
+<section class="contact" id="contact"><div class="wrap">
+  <h2 class="rv">Let's talk.</h2>
+  <p class="rv">Hiring for an ML role, or working on something where models might fail? I answer every email.</p>
+  <div class="btns rv" style="justify-content:center"><a class="btn f" href="mailto:jalalabedin200217@gmail.com">jalalabedin200217@gmail.com</a><a class="btn" href="assets/Jalal-Abedin-CV.pdf" target="_blank" rel="noopener">Download CV</a></div>
+  <div class="so rv"><a href="https://linkedin.com/in/jalal-abedin" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Jalalab" target="_blank" rel="noopener">GitHub</a><a href="https://huggingface.co/pial17" target="_blank" rel="noopener">Hugging Face</a></div>
+</div></section>
+</main>
+<footer>© 2026 Jalal Abedin, Dhaka</footer>
 
-<!-- CONTACT -->
-<section class="contact-section" id="contact">
-  <div class="section-inner">
-    <p class="eyebrow reveal">Contact</p>
-    <h2 class="sec-title reveal">Let's work together.</h2>
-    <p class="sec-sub reveal">Open to ML/AI roles, research collaborations, and interesting opportunities.</p>
-    <div class="contact-grid">
-      <div class="clinks reveal-left">
-        <a class="clink" href="mailto:jalalabedin200217@gmail.com"><div class="clink-icon">✉</div><div><div class="clink-lbl">Email</div><div class="clink-val">jalalabedin200217@gmail.com</div></div></a>
-        <a class="clink" href="https://linkedin.com/in/jalal-abedin" target="_blank"><div class="clink-icon">in</div><div><div class="clink-lbl">LinkedIn</div><div class="clink-val">linkedin.com/in/jalal-abedin</div></div></a>
-        <a class="clink" href="https://github.com/Jalalab" target="_blank"><div class="clink-icon">GH</div><div><div class="clink-lbl">GitHub</div><div class="clink-val">github.com/Jalalab</div></div></a>
-        <a class="clink" href="#"><div class="clink-icon">CV</div><div><div class="clink-lbl">Resume</div><div class="clink-val">Download PDF</div></div></a>
-      </div>
-      <form class="cform" action="https://formspree.io/f/mpqkyrrk" method="POST">
-        <input type="text" placeholder="Your name" required/>
-        <input type="email" placeholder="Your email" required/>
-        <textarea placeholder="Your message…" rows="5" required></textarea>
-        <button type="submit">Send Message →</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>© 2025 Jalal Abedin — Built with care.</p>
-  <a href="https://github.com/Jalalab" target="_blank">github.com/Jalalab →</a>
-</footer>
+<div id="modal" role="dialog" aria-modal="true"><div class="box"><div class="top"><span id="mt"></span><button id="mc">Close</button></div><img id="mi" alt=""/></div></div>
 
 <script>
-// ── CURSOR ──────────────────────────────────────────────
-const cursor=document.getElementById('cursor');
-const ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
-(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
-function cursorBig(){cursor.style.width='18px';cursor.style.height='18px';ring.style.width='54px';ring.style.height='54px';}
-function cursorNorm(){cursor.style.width='10px';cursor.style.height='10px';ring.style.width='36px';ring.style.height='36px';}
-document.querySelectorAll('a,button,.stat-card,.skill-card,.clink').forEach(el=>{el.addEventListener('mouseenter',cursorBig);el.addEventListener('mouseleave',cursorNorm);});
+/* ===== EDIT YOUR CERTIFICATES HERE =====
+   title, issuer, year, image (optional: path like "assets/certs/python.png"), link (optional)
+   Delete the sample lines and add your real ones. */
+const CERTS=[
+  {title:"Certificate name 1",issuer:"Issuer, for example Coursera",year:"2025",image:"",link:""},
+  {title:"Certificate name 2",issuer:"Issuer, for example Kaggle",year:"2025",image:"",link:""},
+  {title:"Certificate name 3",issuer:"Issuer",year:"2026",image:"",link:""}
+];
 
-// ── PROGRESS BAR ────────────────────────────────────────
-const prog=document.getElementById('progress');
-window.addEventListener('scroll',()=>{prog.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';});
-
-// ── PARTICLES ───────────────────────────────────────────
-const canvas=document.getElementById('bg-canvas');
-const ctx=canvas.getContext('2d');
-let W,H;
-function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
-resize();window.addEventListener('resize',resize);
-function rand(a,b){return Math.random()*(b-a)+a;}
-class P{
-  constructor(){this.reset(true);}
-  reset(init=false){this.x=rand(0,W);this.y=init?rand(0,H):H+10;this.vy=rand(-.3,-.08);this.vx=rand(-.08,.08);this.r=rand(.8,2.2);this.a=rand(.08,.45);}
-  update(){this.x+=this.vx;this.y+=this.vy;if(this.y<-10)this.reset();}
-  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(79,142,255,${this.a})`;ctx.fill();}
-}
-const pts=Array.from({length:80},()=>new P());
-function drawLines(){
-  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
-    const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);
-    if(d<130){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(79,142,255,${.05*(1-d/130)})`;ctx.lineWidth=.7;ctx.stroke();}
+/* hero demo, loops forever */
+const P="a little teddy bear sitting by a pillow.";
+const T=["unanimously","window","expands","magical","spiegel","merrihov","sback","classroom"];
+const pr=document.getElementById('prompt'),o2=document.getElementById('o2'),o2t=document.getElementById('o2t'),sb=document.getElementById('sb'),sl=document.getElementById('sl');
+let run=0;
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+async function demo(){
+  const id=++run;
+  while(id===run){
+    pr.classList.remove('fade');pr.classList.add('caret');pr.textContent='';
+    o2.classList.remove('lit','hit');o2t.textContent='waiting for the prompt';
+    sb.style.width='0';sl.textContent='Typing the prompt';
+    for(const c of P){if(id!==run)return;pr.append(c);await wait(30)}
+    await wait(500);if(id!==run)return;
+    o2t.textContent='a teddy bear by a pillow';sl.textContent='Clean prompt: the model draws what was asked';
+    await wait(900);
+    for(let k=0;k<T.length;k++){
+      if(id!==run)return;
+      const s=document.createElement('span');s.className='tok';s.textContent=T[k];pr.append(' ',s);
+      sb.style.width=Math.round((k+1)/T.length*100)+'%';
+      sl.textContent='Adding adversarial token '+(k+1)+' of '+T.length;
+      await wait(320);
+    }
+    await wait(400);if(id!==run)return;
+    o2.classList.add('lit','hit');o2t.textContent='a teddy bear by a window';
+    sl.textContent='Attack succeeded: the model draws the wrong scene';
+    await wait(3600);if(id!==run)return;
+    pr.classList.add('fade');await wait(600);
   }
 }
-(function animP(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.update();p.draw();});drawLines();requestAnimationFrame(animP);})();
+document.getElementById('replay').onclick=demo;
+if(matchMedia('(prefers-reduced-motion:reduce)').matches){pr.textContent=P+' '+T.join(' ');o2.classList.add('lit');o2t.textContent='a teddy bear by a window';sb.style.width='100%';sl.textContent='Attack succeeded'}else demo();
+/* marquee */
+const words=["Adversarial ML","Federated learning","Computer vision","Diffusion models","LLM agents","PyTorch","CLIP","Vision transformers","IEEE published"];
+document.getElementById('track').innerHTML=[...words,...words,...words,...words].map(w=>`<span>${w}</span>`).join("");
 
-// ── SCROLL REVEAL ───────────────────────────────────────
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el=>obs.observe(el));
+/* certificates */
+const grid=document.getElementById('certGrid');
+grid.innerHTML=CERTS.map((c,i)=>`<button class="cert" data-i="${i}"><div class="ic">${c.title.trim()[0]||"C"}</div><h4>${c.title}</h4><p>${c.issuer}</p><span>${c.year}</span></button>`).join("");
+const modal=document.getElementById('modal');
+grid.addEventListener('click',e=>{const b=e.target.closest('.cert');if(!b)return;const c=CERTS[b.dataset.i];
+  if(c.image){document.getElementById('mt').textContent=c.title;const im=document.getElementById('mi');im.src=c.image;im.alt=c.title;modal.classList.add('on')}
+  else if(c.link){window.open(c.link,'_blank','noopener')}});
+document.getElementById('mc').onclick=()=>modal.classList.remove('on');
+modal.onclick=e=>{if(e.target===modal)modal.classList.remove('on')};
+addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('on')});
 
-// ── COUNT UP ────────────────────────────────────────────
-setTimeout(()=>{
-  document.querySelectorAll('[data-count]').forEach(el=>{
-    let s=0,t=+el.dataset.count,step=t/50;
-    const timer=setInterval(()=>{s=Math.min(s+step,t);el.textContent=Math.floor(s);if(s>=t)clearInterval(timer);},25);
-  });
-},900);
+/* progress, reveal, counters, bars */
+const bar=document.getElementById('bar');
+addEventListener('scroll',()=>{const h=document.body.scrollHeight-innerHeight;bar.style.width=(h>0?scrollY/h*100:0)+'%'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in','go');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const co=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,end=+el.dataset.n,t0=performance.now();
+  (function f(t){const p=Math.min((t-t0)/1300,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3))).toLocaleString();if(p<1)requestAnimationFrame(f)})(t0);co.unobserve(el)}),{threshold:.6});
+document.querySelectorAll('[data-n]').forEach(el=>co.observe(el));
+/* ===== NEW: all extra animations + GitHub sync ===== */
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const FINE=matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-// ── GITHUB AUTO-SYNC ────────────────────────────────────
+/* Edit these two lists */
 const GH='Jalalab';
-const FEATURED=['thyroid-cancer-recurrence-prediction','stock-market-predictor','CIFAR10-CNN-ViT'];
-// Hide profile readme repo and portfolio repo (case-insensitive)
-const HIDDEN=['jalalab','jalalab.github.io'];
-const TOPICS={'machine-learning':'ML','deep-learning':'Deep Learning','computer-vision':'CV','nlp':'NLP','federated-learning':'Federated Learning','blockchain':'Blockchain','adversarial':'Adversarial ML','lstm':'Time Series','transformer':'Transformer','classification':'Classification','healthcare':'Healthcare AI','data-analysis':'Data Analysis','streamlit':'Streamlit'};
-function badge(r){if(FEATURED.includes(r.name))return{l:'Featured',f:true};for(const t of(r.topics||[])){if(TOPICS[t])return{l:TOPICS[t],f:false};}return{l:r.language||'Project',f:false,lang:!r.language};}
-function fmt(n){return n.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());}
-function card(r,i){
-  const b=badge(r);
-  const stars=r.stargazers_count>0?`<span class="pstars">★ ${r.stargazers_count}</span>`:'';
-  const lang=r.language?`<span class="ptag">${r.language}</span>`:'';
-  const topics=(r.topics||[]).filter(t=>TOPICS[t]).slice(0,4).map(t=>`<span class="ptag">${t}</span>`).join('');
-  // Entire card is clickable — wraps in <a> tag
-  return `<a class="project-card ${b.f?'featured':''}" href="${r.html_url}" target="_blank" rel="noopener noreferrer" style="animation-delay:${i*90}ms;text-decoration:none;display:flex;flex-direction:column;">
-    <div class="pc-top"><span class="pbadge ${b.lang?'lang':''}">${b.l}</span>${stars}</div>
-    <h3>${fmt(r.name)}</h3>
-    <p>${r.description||'Visit the repository for project details and documentation.'}</p>
-    <div class="pstack">${lang}${topics}</div>
-    <div class="plinks">
-      <span class="plink">↗ GitHub</span>
-      ${r.homepage?`<span class="plink">↗ Live Demo</span>`:''}
-    </div>
-  </a>`;
+const HIDDEN=['jalalab','jalalab.github.io'];   // repos you do NOT want shown (lowercase names)
+const FEATURED=[];                               // repos to put first, e.g. ['xraymind']
+
+/* 1. heading: split into letters */
+document.querySelectorAll('#hname .ln').forEach((ln,li)=>{
+  const t=ln.textContent;ln.textContent='';
+  [...t].forEach((c,i)=>{const s=document.createElement('span');s.className='ch';s.setAttribute('aria-hidden','true');s.style.setProperty('--i',i+li*6);s.textContent=c===' '?'\u00a0':c;ln.append(s)});
+});
+
+/* 2. section headings: word by word */
+document.querySelectorAll('h2').forEach(h=>{
+  h.innerHTML=h.textContent.trim().split(' ').map((w,i)=>`<span class="w"><span style="--i:${i}">${w}</span></span>`).join(' ');
+});
+
+/* 3. grids appear one after another */
+document.querySelectorAll('.pg,.certs,.sk,.stats,.nums').forEach(g=>{g.classList.add('stag');io.observe(g)});
+
+/* 4. network of dots behind the hero */
+(()=>{
+  const cv=document.getElementById('net');if(!cv||RM)return;
+  const x=cv.getContext('2d'),hero=cv.parentElement;let W,H,pts=[],m={x:-999,y:-999},vis=true;
+  const col=()=>getComputedStyle(document.documentElement).getPropertyValue('--blue').trim();
+  function size(){const d=devicePixelRatio||1;W=hero.clientWidth;H=hero.clientHeight;cv.width=W*d;cv.height=H*d;x.setTransform(d,0,0,d,0,0);
+    pts=Array.from({length:Math.min(90,Math.floor(W*H/14000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
+  size();addEventListener('resize',size);
+  hero.addEventListener('mousemove',e=>{const r=hero.getBoundingClientRect();m.x=e.clientX-r.left;m.y=e.clientY-r.top});
+  hero.addEventListener('mouseleave',()=>{m.x=m.y=-999});
+  new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(hero);
+  (function loop(){requestAnimationFrame(loop);if(!vis)return;x.clearRect(0,0,W,H);const c=col();
+    for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+      const dx=p.x-m.x,dy=p.y-m.y,d=Math.hypot(dx,dy);if(d>0&&d<120){p.x+=dx/d*1.5;p.y+=dy/d*1.5}
+      x.globalAlpha=.55;x.fillStyle=c;x.beginPath();x.arc(p.x,p.y,2,0,6.283);x.fill()}
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
+      if(d<130){x.globalAlpha=.22*(1-d/130);x.strokeStyle=c;x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke()}}
+    x.globalAlpha=1})();
+})();
+
+/* 5. cursor ring, 3D tilt, magnetic buttons (mouse devices only) */
+if(FINE&&!RM){
+  const ring=document.getElementById('cur');let cx=0,cy=0,tx=0,ty=0,tiltEl=null,btnEl=null;
+  (function f(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;ring.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;requestAnimationFrame(f)})();
+  addEventListener('mousemove',e=>{
+    tx=e.clientX;ty=e.clientY;
+    ring.classList.toggle('big',!!e.target.closest('a,button,summary,.cert'));
+    const c=e.target.closest('.pc,.cert');
+    if(tiltEl&&tiltEl!==c){tiltEl.style.transform='';tiltEl=null}
+    if(c){tiltEl=c;const r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+      c.style.transform=`perspective(700px) rotateX(${-py*10}deg) rotateY(${px*10}deg) translateY(-4px)`}
+    const b=e.target.closest('.btn');
+    if(btnEl&&btnEl!==b){btnEl.style.transform='';btnEl=null}
+    if(b){btnEl=b;const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.2}px,${(e.clientY-r.top-r.height/2)*.3}px)`}
+  });
+  document.addEventListener('mouseleave',()=>{if(tiltEl)tiltEl.style.transform='';if(btnEl)btnEl.style.transform=''});
 }
 
-async function loadProjects(){
-  const grid=document.getElementById('projects-grid');
-  const dot=document.getElementById('gh-dot');
-  const txt=document.getElementById('gh-status-text');
+/* 6. GitHub auto-sync */
+const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const nice=n=>n.replace(/[-_]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+const ghGrid=document.getElementById('ghgrid'),ghDot=document.getElementById('ghdot'),ghTxt=document.getElementById('ghtxt'),ghMore=document.getElementById('ghmore');
+let repos=[],shown=6;
+function drawRepos(){
+  ghGrid.innerHTML=repos.slice(0,shown).map(r=>`<div class="pc"><span class="chip o" style="align-self:flex-start">${esc(r.language||'Project')}</span><h4>${esc(nice(r.name))}</h4><p>${esc(r.description||'Description coming soon.')}</p><div class="meta">${r.stargazers_count?'Stars: '+r.stargazers_count+'. ':''}Updated ${new Date(r.pushed_at).toLocaleDateString('en',{month:'short',year:'numeric'})}</div><div class="lk"><a href="${esc(r.html_url)}" target="_blank" rel="noopener">Source code</a>${r.homepage?`<a href="${esc(r.homepage)}" target="_blank" rel="noopener">Live demo</a>`:''}</div></div>`).join('');
+  ghMore.style.display=repos.length>shown?'inline-block':'none';
+}
+ghMore.onclick=()=>{shown+=6;drawRepos()};
+(async()=>{
   try{
-    const res=await fetch(`https://api.github.com/users/${GH}/repos?sort=updated&per_page=100`);
-    if(!res.ok) throw new Error(res.status);
-    const repos=await res.json();
-    const list=repos.filter(r=>!HIDDEN.includes(r.name.toLowerCase())&&!r.fork)
-      .sort((a,b)=>(FEATURED.includes(b.name)?1:0)-(FEATURED.includes(a.name)?1:0)||b.stargazers_count-a.stargazers_count);
-    if(!list.length){grid.innerHTML='<p style="color:var(--text-muted)">No public repositories found.</p>';return;}
-    grid.innerHTML=list.map((r,i)=>card(r,i)).join('');
-    dot.className='gh-dot';txt.textContent=`${list.length} repos · live`;
-    grid.querySelectorAll('.project-card').forEach(el=>{el.addEventListener('mouseenter',cursorBig);el.addEventListener('mouseleave',cursorNorm);});
+    let data,c=null;try{c=JSON.parse(localStorage.getItem('ghc')||'null')}catch(e){}
+    if(c&&Date.now()-c.t<6e5)data=c.d;
+    else{const res=await fetch(`https://api.github.com/users/${GH}/repos?per_page=100&sort=pushed`);if(!res.ok)throw 0;data=await res.json();try{localStorage.setItem('ghc',JSON.stringify({t:Date.now(),d:data}))}catch(e){}}
+    repos=data.filter(r=>!r.fork&&!r.archived&&!HIDDEN.includes(r.name.toLowerCase()))
+      .sort((a,b)=>(FEATURED.includes(b.name)-FEATURED.includes(a.name))||new Date(b.pushed_at)-new Date(a.pushed_at));
+    ghTxt.textContent=`${repos.length} repositories, synced live from GitHub`;
+    repos.length?drawRepos():ghGrid.innerHTML='<p style="color:var(--mid)">No public repositories yet.</p>';
   }catch(e){
-    dot.className='gh-dot error';txt.textContent='GitHub unavailable';
-    grid.innerHTML=`
-    <div class="project-card featured" style="animation-delay:0ms"><div class="pc-top"><span class="pbadge">Featured</span></div><h3>Thyroid Cancer Recurrence Prediction</h3><p>97.5% accuracy ML model with SHAP explainability for healthcare AI.</p><div class="pstack"><span class="ptag">Python</span><span class="ptag">Scikit-learn</span><span class="ptag">SHAP</span></div><div class="plinks"><a class="plink" href="https://github.com/Jalalab/thyroid-cancer-recurrence-prediction" target="_blank">↗ GitHub</a></div></div>
-    <div class="project-card featured" style="animation-delay:90ms"><div class="pc-top"><span class="pbadge">Featured</span></div><h3>Stock Market Predictor</h3><p>LSTM, Bi-LSTM, and Transformer models for financial time-series forecasting with Streamlit dashboard.</p><div class="pstack"><span class="ptag">PyTorch</span><span class="ptag">LSTM</span><span class="ptag">Streamlit</span></div><div class="plinks"><a class="plink" href="https://github.com/Jalalab/stock-market-predictor" target="_blank">↗ GitHub</a></div></div>
-    <div class="project-card featured" style="animation-delay:180ms"><div class="pc-top"><span class="pbadge">Featured</span></div><h3>CIFAR-10 CNN vs ViT</h3><p>ResNeXt-29 vs Vision Transformer benchmark with full IEEE LaTeX report.</p><div class="pstack"><span class="ptag">PyTorch</span><span class="ptag">ResNeXt</span><span class="ptag">ViT</span></div><div class="plinks"><a class="plink" href="https://github.com/Jalalab/CIFAR10-CNN-ViT" target="_blank">↗ GitHub</a></div></div>`;
+    ghDot.classList.add('err');ghTxt.textContent='GitHub could not be reached right now';
+    ghGrid.innerHTML=`<p style="color:var(--mid)">See all my projects on <a href="https://github.com/${GH}" style="color:var(--blue);font-weight:600">github.com/${GH}</a>.</p>`;
   }
-}
-
-function handleSubmit(e){e.preventDefault();const btn=e.target.querySelector('button');btn.textContent='Message sent ✓';btn.style.background='#22c55e';setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';e.target.reset();},3000);}
-
-loadProjects();
+})();
+/* ===== live hash chain ===== */
+(async()=>{
+  const host=document.getElementById('chain');if(!host||!window.crypto||!crypto.subtle)return;
+  const rec=['filter | client 3 | image 4f1a | score 0.83 | removed','registry | client 5 | image 9c2e | duplicate of client 1 | rejected','update | round 1 | client 2 | weights hash 71be','global model | round 1 | hash d03a','certificate | 50 rounds complete'];
+  let data=[...rec];
+  const sha=async s=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+  async function build(d){const out=[];let p='0'.repeat(64);for(let i=0;i<d.length;i++){p=await sha(i+'|'+d[i]+'|'+p);out.push(p)}return out}
+  const stored=await build(rec),stat=document.getElementById('cstat');
+  async function draw(){
+    const now=await build(data);let bad=-1;
+    host.innerHTML=data.map((d,i)=>{const ok=now[i]===stored[i];if(!ok&&bad<0)bad=i;
+      return (i?`<div class="lnk${ok?'':' bad'}"></div>`:'')+`<div class="blk${ok?'':' bad'}" id="b${i}"><b>Block ${i+1}</b><span>${d}</span><div class="lbl">hash</div><code>${now[i].slice(0,14)}</code></div>`}).join('');
+    stat.textContent=bad<0?'Chain valid: all 5 blocks verify.':'Chain broken from block '+(bad+1)+': '+(5-bad)+' of 5 blocks fail verification.';
+    stat.style.color=bad<0?'var(--good)':'var(--hot)';
+  }
+  let k=0,vis=false;
+  new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(host);
+  setInterval(()=>{if(!vis||RM)return;const b=document.getElementById('b'+(k++%data.length));if(b){b.classList.remove('pulse');void b.offsetWidth;b.classList.add('pulse')}},900);
+  document.getElementById('tamper').onclick=()=>{data[1]=rec[1].replace('rejected','accepted');draw()};
+  document.getElementById('fix').onclick=()=>{data=[...rec];draw()};
+  draw();
+})();
 </script>
 </body>
 </html>
