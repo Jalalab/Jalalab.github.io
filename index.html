@@ -236,6 +236,16 @@ h2.in .w>span{transform:none}
 .fs b{display:block;font-family:'Bricolage Grotesque';font-size:17px;color:var(--ink);margin-bottom:4px}
 .fs:nth-child(2){animation-delay:2s}.fs:nth-child(3){animation-delay:4s}.fs:nth-child(4){animation-delay:6s}
 @keyframes fstep{0%,22%{border-color:var(--blue);background:var(--blue-soft);transform:translateY(-5px)}30%,100%{border-color:var(--line);background:transparent;transform:none}}
+/* ===== ML Engineer: endless wave ===== */
+h1 .l2 .ch{
+  animation:chIn .9s cubic-bezier(.2,.8,.2,1) backwards, wave 3.2s ease-in-out infinite;
+  animation-delay:calc(var(--i)*45ms), calc(1.4s + var(--i)*90ms);
+}
+@keyframes wave{
+  0%,100%{color:transparent;transform:translateY(0)}
+  12%{color:var(--blue);transform:translateY(-8px)}
+  26%{color:transparent;transform:translateY(0)}
+}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.br i{transform:scaleX(1)}html{scroll-behavior:auto}}
 </style>
 </head>
