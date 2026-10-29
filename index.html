@@ -260,6 +260,11 @@ h1 .l2 .ch{
 .qt p .lt{text-shadow:none}
 @keyframes glint{0%,14%,100%{color:var(--ink);transform:none}7%{color:var(--hot);transform:translateY(-3px) scale(1.1)}}
 .qt cite{text-align:left;font-size:12px;letter-spacing:.2em;color:var(--blue)}
+/* ===== quote: Roman letters, forced ===== */
+.qt p{font-family:'Cinzel','Trajan Pro','Times New Roman',serif !important;font-weight:700 !important;text-transform:uppercase !important;font-style:normal !important;letter-spacing:.14em !important;font-size:clamp(17px,1.9vw,24px) !important;line-height:1.6 !important;color:var(--ink)}
+.qt p .lt{font-family:inherit;font-style:normal;text-shadow:1px 1px 0 color-mix(in srgb,var(--blue) 45%,transparent),-1px -1px 0 color-mix(in srgb,#fff 22%,transparent)}
+.qt cite{font-family:'Cinzel','Times New Roman',serif !important;font-style:normal !important;text-transform:uppercase !important;letter-spacing:.28em !important;font-size:12px !important;color:var(--blue) !important}
+.qt cite::before{content:'';display:block;width:56px;height:2px;margin-bottom:10px;background:linear-gradient(90deg,var(--blue),var(--hot))}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.br i{transform:scaleX(1)}html{scroll-behavior:auto}}
 </style>
 </head>
