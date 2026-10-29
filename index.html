@@ -246,18 +246,23 @@ h1 .l2 .ch{
   12%{color:var(--blue);transform:translateY(-8px)}
   26%{color:transparent;transform:translateY(0)}
 }
+/* ===== full-page network ===== */
+#net{position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:-1;pointer-events:none}
+.hero{overflow:visible}
+#paper{background:color-mix(in srgb,var(--panel) 72%,transparent)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.br i{transform:scaleX(1)}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 <div id="cur"></div>
+<canvas id="net"></canvas>
 <header><div class="wrap">
   <a class="logo" href="#top">Jalal Abedin</a>
   <nav><a href="#work">Work</a><a href="#paper">Research</a><a href="#certs">Certificates</a><a href="#skills">Skills</a><a href="#contact">Contact</a><a class="cv" href="assets/Jalal-Abedin-CV.pdf" target="_blank" rel="noopener">Download CV</a></nav>
 </div></header>
 
 <main id="top">
-<div class="hero"><canvas id="net"></canvas><div class="wrap">
+<div class="hero"><div class="wrap">
   <div class="hero-grid">
     <div>
       <div class="status"><i></i>Open to ML and AI roles in Dhaka</div>
@@ -556,26 +561,30 @@ document.querySelectorAll('h2').forEach(h=>{
 /* 3. grids appear one after another */
 document.querySelectorAll('.pg,.certs,.sk,.stats,.nums').forEach(g=>{g.classList.add('stag');io.observe(g)});
 
-/* 4. network of dots behind the hero */
+/* 4. network of dots, whole page, bright */
 (()=>{
   const cv=document.getElementById('net');if(!cv||RM)return;
-  const x=cv.getContext('2d'),hero=cv.parentElement;let W,H,pts=[],m={x:-999,y:-999},vis=true;
+  const x=cv.getContext('2d');let W,H,pts=[],m={x:-999,y:-999};
   const col=()=>getComputedStyle(document.documentElement).getPropertyValue('--blue').trim();
-  function size(){const d=devicePixelRatio||1;W=hero.clientWidth;H=hero.clientHeight;cv.width=W*d;cv.height=H*d;x.setTransform(d,0,0,d,0,0);
-    pts=Array.from({length:Math.min(90,Math.floor(W*H/14000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
+  const hot=()=>getComputedStyle(document.documentElement).getPropertyValue('--hot').trim();
+  function size(){const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;x.setTransform(d,0,0,d,0,0);
+    pts=Array.from({length:Math.min(130,Math.floor(W*H/11000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.55,vy:(Math.random()-.5)*.55,r:Math.random()*1.6+1.6,h:Math.random()<.12}))}
   size();addEventListener('resize',size);
-  hero.addEventListener('mousemove',e=>{const r=hero.getBoundingClientRect();m.x=e.clientX-r.left;m.y=e.clientY-r.top});
-  hero.addEventListener('mouseleave',()=>{m.x=m.y=-999});
-  new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(hero);
-  (function loop(){requestAnimationFrame(loop);if(!vis)return;x.clearRect(0,0,W,H);const c=col();
+  addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY});
+  addEventListener('mouseout',()=>{m.x=m.y=-999});
+  (function loop(){requestAnimationFrame(loop);x.clearRect(0,0,W,H);const c=col(),h=hot();
     for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
-      const dx=p.x-m.x,dy=p.y-m.y,d=Math.hypot(dx,dy);if(d>0&&d<120){p.x+=dx/d*1.5;p.y+=dy/d*1.5}
-      x.globalAlpha=.55;x.fillStyle=c;x.beginPath();x.arc(p.x,p.y,2,0,6.283);x.fill()}
-    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
-      if(d<130){x.globalAlpha=.22*(1-d/130);x.strokeStyle=c;x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke()}}
+      const dx=p.x-m.x,dy=p.y-m.y,d=Math.hypot(dx,dy);if(d>0&&d<110){p.x+=dx/d*1.8;p.y+=dy/d*1.8}
+      x.globalAlpha=.95;x.fillStyle=p.h?h:c;x.shadowColor=p.h?h:c;x.shadowBlur=8;
+      x.beginPath();x.arc(p.x,p.y,p.r,0,6.283);x.fill()}
+    x.shadowBlur=0;
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
+        if(d<150){x.globalAlpha=.55*(1-d/150);x.strokeStyle=c;x.lineWidth=1.1;x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke()}}
+      const dm=Math.hypot(pts[i].x-m.x,pts[i].y-m.y);
+      if(dm<190){x.globalAlpha=.8*(1-dm/190);x.strokeStyle=h;x.lineWidth=1.3;x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(m.x,m.y);x.stroke()}}
     x.globalAlpha=1})();
 })();
-
 /* 5. cursor ring, 3D tilt, magnetic buttons (mouse devices only) */
 if(FINE&&!RM){
   const ring=document.getElementById('cur');let cx=0,cy=0,tx=0,ty=0,tiltEl=null,btnEl=null;
