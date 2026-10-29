@@ -251,16 +251,15 @@ h1 .l2 .ch{
 #net{position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:-1;pointer-events:none}
 .hero{overflow:visible}
 #paper{background:color-mix(in srgb,var(--panel) 72%,transparent)}
-/* ===== quote: Roman inscription ===== */
-.qt{--gold:#a8741f;position:relative;margin:0 0 30px;padding:22px 26px 18px;max-width:560px;border:2px solid var(--gold);border-radius:6px;background:color-mix(in srgb,var(--panel) 80%,transparent);box-shadow:inset 0 0 0 5px var(--bg),inset 0 0 0 6px var(--gold)}
-@media(prefers-color-scheme:dark){.qt{--gold:#e3b866}}
-.qt p{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(19px,2.5vw,27px);line-height:1.35;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:12px}
-.qt p .wd{display:inline-block;white-space:nowrap;margin-right:.35em}
-.qt p .lt{display:inline-block;text-shadow:1px 1px 0 color-mix(in srgb,var(--ink) 25%,transparent),-1px -1px 0 color-mix(in srgb,#fff 35%,transparent);animation:carve .7s cubic-bezier(.2,.8,.2,1) backwards,glint 5.5s ease-in-out infinite;animation-delay:calc(var(--i)*55ms + .5s),calc(var(--i)*90ms + 3.5s)}
-@keyframes carve{from{opacity:0;transform:scale(1.5) translateY(-6px);filter:blur(6px)}}
-@keyframes glint{0%,14%,100%{color:var(--gold);transform:none}7%{color:var(--ink);transform:translateY(-3px) scale(1.08)}}
-.qt cite{display:block;text-align:center;font-family:'Cinzel',serif;font-style:normal;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);animation:qfade 1.6s ease 2.6s backwards}
-@keyframes qfade{from{opacity:0;letter-spacing:.5em}}
+/* ===== quote: no box, under the photo ===== */
+.side{display:flex;flex-direction:column}
+.qt,.qt:hover{border:none;border-radius:0;background:none;box-shadow:none;max-width:none;margin:38px 0 0;padding:2px 0 2px 20px;position:relative}
+.qt::before{content:'';position:absolute;left:0;top:0;width:4px;height:100%;background:linear-gradient(var(--blue),var(--hot));border-radius:4px;transform-origin:top;animation:qline 1.2s cubic-bezier(.2,.8,.2,1) .6s backwards}
+@keyframes qline{from{transform:scaleY(0)}}
+.qt p{text-align:left;color:var(--ink);font-size:clamp(17px,1.7vw,22px);letter-spacing:.06em;line-height:1.45;margin-bottom:10px}
+.qt p .lt{text-shadow:none}
+@keyframes glint{0%,14%,100%{color:var(--ink);transform:none}7%{color:var(--hot);transform:translateY(-3px) scale(1.1)}}
+.qt cite{text-align:left;font-size:12px;letter-spacing:.2em;color:var(--blue)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.br i{transform:scaleX(1)}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -279,10 +278,13 @@ h1 .l2 .ch{
       <div class="status"><i></i>Open to ML and AI roles in Dhaka</div>
       <h1 id="hname" aria-label="Jalal Abedin, ML Engineer and Researcher"><span class="ln l1">Jalal Abedin.</span><span class="ln l2">ML Engineer</span><span class="ln l3">&amp; Researcher.</span></h1>
      <p class="intro">I'm most interested in the part of AI that people tend to skip: how it breaks. During my degree at North South University I attacked an image model, built an agent to defend it, and checked my results against human judgement instead of trusting a single metric. I want to build AI that holds up outside the lab.</p>
-      <blockquote class="qt" aria-label="What stands in the way becomes the way. Marcus Aurelius, Meditations"><p id="qtext" aria-hidden="true">What stands in the way becomes the way.</p><cite>Marcus Aurelius &mdash; </cite></blockquote>
+      
       <div class="btns"><a class="btn f" href="#work">See the projects</a><a class="btn" href="mailto:jalalabedin200217@gmail.com">Email me</a></div>
     </div>
-    <div class="photo"><img src="photo.jpg" alt="Jalal Abedin" onerror="this.style.display='none'"/></div>
+    <div class="side">
+      <div class="photo"><img src="photo.jpg" alt="Jalal Abedin" onerror="this.style.display='none'"/></div>
+         <blockquote class="qt" aria-label="What stands in the way becomes the way. Marcus Aurelius, Meditations"><p id="qtext" aria-hidden="true">What stands in the way becomes the way.</p><cite>Marcus Aurelius, Meditations</cite></blockquote>
+</div>
   </div>
 
   <div class="demo" aria-label="Demo of an adversarial prompt attack">
