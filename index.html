@@ -250,6 +250,13 @@ h1 .l2 .ch{
 #net{position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:-1;pointer-events:none}
 .hero{overflow:visible}
 #paper{background:color-mix(in srgb,var(--panel) 72%,transparent)}
+/* ===== quote ===== */
+.qt{position:relative;margin:0 0 30px;padding:4px 0 4px 22px;max-width:520px}
+.qt::before{content:'';position:absolute;left:0;top:0;width:4px;height:100%;background:linear-gradient(var(--blue),var(--hot));border-radius:4px;transform-origin:top;animation:qline 1.2s cubic-bezier(.2,.8,.2,1) .6s backwards}
+.qt p{font-family:'Bricolage Grotesque';font-size:clamp(22px,2.6vw,30px);font-weight:600;line-height:1.25;letter-spacing:-.02em;margin-bottom:8px;animation:qtext 1.6s ease .9s backwards}
+.qt cite{font-style:normal;font-size:14px;color:var(--soft);animation:qtext 1.6s ease 1.5s backwards}
+@keyframes qline{from{transform:scaleY(0)}}
+@keyframes qtext{from{opacity:0;filter:blur(8px);transform:translateX(-14px)}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.br i{transform:scaleX(1)}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -267,7 +274,8 @@ h1 .l2 .ch{
     <div>
       <div class="status"><i></i>Open to ML and AI roles in Dhaka</div>
       <h1 id="hname" aria-label="Jalal Abedin, ML Engineer and Researcher"><span class="ln l1">Jalal Abedin.</span><span class="ln l2">ML Engineer</span><span class="ln l3">&amp; Researcher.</span></h1>
-      <p class="intro">I'm a machine learning engineer. For my thesis and final year project I spent a year making image models fail on purpose, then building the checks that catch it. One paper is published at IEEE and a second is under review.</p>
+     <p class="intro">I'm most interested in the part of AI that people tend to skip: how it breaks. During my degree at North South University I attacked an image model, built an agent to defend it, and checked my results against human judgement instead of trusting a single metric. I want to build AI that holds up outside the lab.</p>
+      <blockquote class="qt"><p>What stands in the way becomes the way.</p><cite>Marcus Aurelius, <i>Meditations</i></cite></blockquote>
       <div class="btns"><a class="btn f" href="#work">See the projects</a><a class="btn" href="mailto:jalalabedin200217@gmail.com">Email me</a></div>
     </div>
     <div class="photo"><img src="photo.jpg" alt="Jalal Abedin" onerror="this.style.display='none'"/></div>
