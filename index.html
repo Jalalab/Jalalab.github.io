@@ -271,6 +271,8 @@ h1 .l2 .ch{
 .views i{width:8px;height:8px;border-radius:50%;background:var(--good);animation:pulse 2s infinite}
 .views span{font-family:'Bricolage Grotesque';font-weight:800;font-size:15px;color:var(--ink)}
 @media(max-width:760px){nav{gap:10px}.views{padding:4px 9px;font-size:12px}}
+/* ===== match line 2 width to the name ===== */
+h1 .ln{white-space:nowrap}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.br i{transform:scaleX(1)}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -287,7 +289,7 @@ h1 .l2 .ch{
   <div class="hero-grid">
     <div>
       <div class="status"><i></i>Open to ML and AI roles in Dhaka</div>
-      <h1 id="hname" aria-label="Jalal Abedin, ML Engineer and Researcher"><span class="ln l1">Jalal Abedin.</span><span class="ln l2">ML Engineer</span><span class="ln l3">&amp; Researcher.</span></h1>
+      <h1 id="hname" aria-label="Jalal Abedin, AI/ML Engineer and Researcher"><span class="ln l1">Jalal Abedin.</span><span class="ln l2">AI/ML Engineer</span><span class="ln l3">&amp; Researcher.</span></h1>
      <p class="intro">I'm most interested in the part of AI that people tend to skip: how it breaks. During my degree at North South University I attacked an image model, built an agent to defend it, and checked my results against human judgement instead of trusting a single metric. I want to build AI that holds up outside the lab.</p>
       
       <div class="btns"><a class="btn f" href="#work">See the projects</a><a class="btn" href="mailto:jalalabedin200217@gmail.com">Email me</a></div>
@@ -697,6 +699,20 @@ ghMore.onclick=()=>{shown+=6;drawRepos()};
     }catch(e){}
   }
   setTimeout(show,1500);
+})();
+  /* ===== AI/ML Engineer: same width as the name ===== */
+(()=>{
+  const l1=document.querySelector('#hname .l1'),l2=document.querySelector('#hname .l2');
+  if(!l1||!l2)return;
+  const w=el=>[...el.children].reduce((a,c)=>a+c.offsetWidth,0);
+  function fit(){
+    l2.style.fontSize='';
+    const a=w(l1),b=w(l2);
+    if(a&&b)l2.style.fontSize=(parseFloat(getComputedStyle(l2).fontSize)*a/b)+'px';
+  }
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>setTimeout(fit,50));
+  addEventListener('resize',fit);
+  addEventListener('load',fit);
 })();
 </script>
 </body>
