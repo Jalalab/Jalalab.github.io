@@ -265,6 +265,12 @@ h1 .l2 .ch{
 .qt p .lt{font-family:inherit;font-style:normal;text-shadow:1px 1px 0 color-mix(in srgb,var(--blue) 45%,transparent),-1px -1px 0 color-mix(in srgb,#fff 22%,transparent)}
 .qt cite{font-family:'Cinzel','Times New Roman',serif !important;font-style:normal !important;text-transform:uppercase !important;letter-spacing:.28em !important;font-size:12px !important;color:var(--blue) !important}
 .qt cite::before{content:'';display:block;width:56px;height:2px;margin-bottom:10px;background:linear-gradient(90deg,var(--blue),var(--hot))}
+/* ===== view counter, top right ===== */
+.views{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--mid);border:2px solid var(--ink);background:var(--panel);padding:5px 12px;border-radius:99px;white-space:nowrap}
+.views[hidden]{display:none}
+.views i{width:8px;height:8px;border-radius:50%;background:var(--good);animation:pulse 2s infinite}
+.views span{font-family:'Bricolage Grotesque';font-weight:800;font-size:15px;color:var(--ink)}
+@media(max-width:760px){nav{gap:10px}.views{padding:4px 9px;font-size:12px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.br i{transform:scaleX(1)}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -273,7 +279,7 @@ h1 .l2 .ch{
 <canvas id="net"></canvas>
 <header><div class="wrap">
   <a class="logo" href="#top">Jalal Abedin</a>
-  <nav><a href="#work">Work</a><a href="#paper">Research</a><a href="#certs">Certificates</a><a href="#skills">Skills</a><a href="#contact">Contact</a><a class="cv" href="assets/Jalal-Abedin-CV.pdf" target="_blank" rel="noopener">Download CV</a></nav>
+  <nav><a href="#work">Work</a><a href="#paper">Research</a><a href="#certs">Certificates</a><a href="#skills">Skills</a><a href="#contact">Contact</a><a class="cv" href="assets/Jalal-Abedin-CV.pdf" target="_blank" rel="noopener">Download CV</a><div class="views" id="views" hidden><i></i><span id="vn">0</span> views</div></nav>
 </div></header>
 
 <main id="top">
@@ -281,6 +287,7 @@ h1 .l2 .ch{
   <div class="hero-grid">
     <div>
       <div class="status"><i></i>Open to ML and AI roles in Dhaka</div>
+      <div class="views" id="views" hidden><i></i><span id="vn">0</span> views</div>
       <h1 id="hname" aria-label="Jalal Abedin, ML Engineer and Researcher"><span class="ln l1">Jalal Abedin.</span><span class="ln l2">ML Engineer</span><span class="ln l3">&amp; Researcher.</span></h1>
      <p class="intro">I'm most interested in the part of AI that people tend to skip: how it breaks. During my degree at North South University I attacked an image model, built an agent to defend it, and checked my results against human judgement instead of trusting a single metric. I want to build AI that holds up outside the lab.</p>
       
@@ -673,6 +680,24 @@ ghMore.onclick=()=>{shown+=6;drawRepos()};
   const p=document.getElementById('qtext');if(!p)return;
   let n=0;
   p.innerHTML=p.textContent.trim().split(' ').map(w=>`<span class="wd">${[...w].map(c=>`<span class="lt" style="--i:${n++}">${c}</span>`).join('')}</span>`).join(' ');
+})();
+  /* ===== view counter (GoatCounter) ===== */
+(()=>{
+  const CODE='jalalab';
+  const s=document.createElement('script');
+  s.async=true;s.src='//gc.zgo.at/count.js';
+  s.dataset.goatcounter='https://'+CODE+'.goatcounter.com/count';
+  document.head.append(s);
+  const box=document.getElementById('views'),vn=document.getElementById('vn');
+  async function show(){
+    try{
+      const r=await fetch('https://'+CODE+'.goatcounter.com/counter/TOTAL.json');
+      if(!r.ok)throw 0;
+      const j=await r.json();
+      vn.textContent=j.count;box.hidden=false;
+    }catch(e){}
+  }
+  setTimeout(show,1500);
 })();
 </script>
 </body>
